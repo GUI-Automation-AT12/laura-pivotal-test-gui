@@ -1,4 +1,4 @@
-package pivotal;
+package junitui;
 
 import core.selenium.WebDriverManager;
 import org.junit.Assert;
@@ -19,8 +19,8 @@ public class LoginTest {
     private LoginPage loginPage;
     private HomePage homePage;
     private WebDriverManager webDriverManager;
-    String email = Environment.getInstance().getEmail();
-    String password = Environment.getInstance().getPassword();
+    private String email = Environment.getInstance().getEmail();
+    private String password = Environment.getInstance().getPassword();
 
     @Before
     public void setUp() {

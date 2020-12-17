@@ -1,4 +1,4 @@
-package pivotal;
+package junitui;
 
 import core.selenium.WebDriverManager;
 import org.junit.Assert;

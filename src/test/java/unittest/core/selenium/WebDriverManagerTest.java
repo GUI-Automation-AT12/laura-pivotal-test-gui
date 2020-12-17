@@ -1,5 +1,6 @@
-package core.selenium;
+package unittest.core.selenium;
 
+import core.selenium.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
