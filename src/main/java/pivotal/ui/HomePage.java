@@ -26,6 +26,7 @@ public class HomePage extends BasePage{
         super(driver, wait);
     }
 
+
     /**
      * Gets profile drop down.
      *
