@@ -1,15 +1,15 @@
 package unittest.core.selenium;
 
 import core.selenium.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
 
 public class WebDriverManagerTest {
     private WebDriverManager webDriverManager = new WebDriverManager();
 
-    @After
+    @AfterTest
     public void quitWebDriver() {
         webDriverManager.getWebDriver().quit();
     }

@@ -1,10 +1,10 @@
-package junitui;
+package unitui;
 
 import core.selenium.WebDriverManager;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pivotal.config.Environment;
@@ -22,12 +22,12 @@ public class LoginTest {
     private String email = Environment.getInstance().getEmail();
     private String password = Environment.getInstance().getPassword();
 
-    @Before
+    @BeforeTest
     public void setUp() {
         webDriverManager = new WebDriverManager();
         webDriverManager.getWebDriver().get(Environment.getInstance().getBaseUrl());
     }
-    @After
+    @AfterTest
     public void tearDown() {
         webDriverManager.getWebDriver().quit();
     }

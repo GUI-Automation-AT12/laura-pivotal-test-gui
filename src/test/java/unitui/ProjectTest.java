@@ -1,12 +1,9 @@
-package junitui;
+package unitui;
 
 import core.selenium.WebDriverManager;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
 import pivotal.config.Environment;
 import pivotal.ui.HomePage;
 import pivotal.ui.InitialPage;
@@ -27,7 +24,7 @@ public class ProjectTest {
     String name = "test";
     String account = "";
 
-    @Before
+    @BeforeTest
     public void setUp() {
         webDriverManager = new WebDriverManager();
         webDriverManager.getWebDriver().get(Environment.getInstance().getBaseUrl());
@@ -36,7 +33,7 @@ public class ProjectTest {
         LoginPage2 loginPage2 = loginPage.login(email);
         homePage = loginPage2.login(password);
     }
-    @After
+    @AfterTest
     public void tearDown() {
         webDriverManager.getWebDriver().quit();
     }

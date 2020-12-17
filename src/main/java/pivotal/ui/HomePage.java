@@ -30,4 +30,13 @@ public class HomePage extends BasePage{
         createProjectBtn.click();
         return new ProjectPage(webDriver, webDriverWait);
     }
+
+    /**
+     * Gets profile drop down.
+     *
+     * @return the profile drop down
+     */
+    public WebElement getProfileDropDown() {
+        return profileDropDown;
+    }
 }
