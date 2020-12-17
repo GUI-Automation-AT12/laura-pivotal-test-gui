@@ -5,63 +5,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
 public class LoginPage extends BasePage{
 
     @FindBy(id = "credentials_username")
     private WebElement emailTextBox;
 
-    @FindBy(id = "credentials_password")
-    private WebElement passwordTextBox;
-
     @FindBy(css = "input.app_signin_action_button:nth-child(5)")
     private WebElement nextBtn;
-
-    @FindBy(css = "input.app_signin_action_button")
-    private WebElement loginBtn;
 
     /**
      * Instantiates a new Login page.
      *
-     * @param driver the driver
-     * @param wait   the wait
+     * @param webDriver the webDriver
+     * @param webDriverWait   the webDriverWait
      */
-    public LoginPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
+    public LoginPage(WebDriver webDriver, WebDriverWait webDriverWait) {
+        super(webDriver, webDriverWait);
     }
 
     /**
-     * Login home page.
+     * Set email in Login page.
      *
      * @param email    the email
-     * @param password the password
-     * @return the home page
+     * @return the Login Page 2
      */
-    public HomePage login (final String email, final String password) {
-        setEmail(email);
-        clickNextBtn();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        setPassword(password);
-        clickLoginBtn();
-        return new HomePage(driver, wait);
-    }
-
-    private void clickNextBtn() {
-        nextBtn.click();
-    }
-
-    private void clickLoginBtn() {
-        loginBtn.click();
-    }
-
-    private void setEmail(final String email) {
+    public LoginPage2 login (final String email) {
         emailTextBox.clear();
         emailTextBox.sendKeys(email);
-    }
-
-    private void setPassword(final String password) {
-        passwordTextBox.clear();
-        passwordTextBox.sendKeys(password);
+        nextBtn.click();
+        return new LoginPage2(webDriver, webDriverWait);
     }
 }

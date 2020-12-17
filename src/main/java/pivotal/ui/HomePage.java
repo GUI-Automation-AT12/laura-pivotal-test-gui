@@ -10,6 +10,12 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//button[@aria-label='Profile Dropdown']")
     private WebElement profileDropDown;
 
+    @FindBy(id = "create-project-button")
+    private WebElement createProjectBtn;
+
+    @FindBy(css = "button.Dropdown__option.Dropdown__option--button:nth-child(3)")
+    private WebElement signOutProfile;
+
     /**
      * Instantiates a new Home page.
      *

@@ -14,7 +14,7 @@ import pivotal.ui.LoginPage;
 import pivotal.ui.LoginPage2;
 
 
-public class LoginTest {
+public class ProjectTest {
     private InitialPage initialPage;
     private LoginPage loginPage;
     private HomePage homePage;
@@ -36,13 +36,10 @@ public class LoginTest {
      * Tests login to pivotal.
      */
     @Test
-    public void login() {
+    public void createProject() {
         initialPage = new InitialPage(webDriverManager.getWebDriver(), webDriverManager.getDriverWait());
         loginPage = initialPage.login();
         LoginPage2 loginPage2 = loginPage.login(email);
         homePage = loginPage2.login(password);
-        WebElement actual = homePage.getProfileDropDown();
-        WebElement expected = webDriverManager.getWebDriver().findElement(By.xpath("//button[contains(text(),'testauto20201')]"));
-        Assert.assertEquals(actual, expected);
     }
 }

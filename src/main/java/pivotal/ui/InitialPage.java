@@ -6,23 +6,68 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class InitialPage extends BasePage{
+
     @FindBy(css = "div.header__lg:nth-child(4) > a.header__link.header__link-signin:nth-child(4)")
     private WebElement loginBtn;
 
+    @FindBy(xpath = "//span[contains(text(),'Product')]")
+    private WebElement productDropDown;
+
+    @FindBy(xpath = "//span[contains(text(),'Community')]")
+    private WebElement communityDropDown;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(5)")
+    private WebElement blogBtn;
+
+    @FindBy(css = "input.signup-form__email")
+    private WebElement emailTextBox;
+
+    @FindBy(css = "input.signup-button")
+    private WebElement getStartedBtn;
+
+    @FindBy(xpath = "//a[contains(text(),'Sign up with Google')]")
+    private WebElement signUpGoogleLink;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(1)")
+    private WebElement featuresProduct;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(2)")
+    private WebElement pricingProduct;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(3)")
+    private WebElement integrationProduct;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(4)")
+    private WebElement enterpriseProduct;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(6)")
+    private WebElement eventsCommunity;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(7)")
+    private WebElement buildTvCommunity;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(8)")
+    private WebElement customerStoriesCommunity;
+
+    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(9)")
+    private WebElement consultancyDirectoryCommunity;
     /**
-     * Instantiates a new Initial page.
+     * Instantiates a new Login page.
      *
-     * @param driver the driver
-     * @param wait   the wait
+     * @param webDriver     the webDriver
+     * @param webDriverWait the webDriverWait
      */
-    public InitialPage(final WebDriver driver, final WebDriverWait wait) {
-        super(driver, wait);
+    public InitialPage(WebDriver webDriver, WebDriverWait webDriverWait) {
+        super(webDriver, webDriverWait);
     }
 
     /**
-     * Click login btn.
+     * Login home page.
+     *
+     * @return the home page
      */
-    public void clickLoginBtn() {
+    public LoginPage login () {
         loginBtn.click();
+        return new LoginPage(webDriver, webDriverWait);
     }
 }
