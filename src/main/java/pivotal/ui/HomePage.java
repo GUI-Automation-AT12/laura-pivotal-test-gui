@@ -17,30 +17,17 @@ public class HomePage extends BasePage{
     private WebElement signOutProfile;
 
     /**
-     * Instantiates a new Home page.
+     * Instantiates a new Project page.
      *
-     * @param driver the driver
-     * @param wait   the wait
+     * @param webDriver the webDriver
+     * @param webDriverWait   the webDriverWait
      */
-    public HomePage(final WebDriver driver, final WebDriverWait wait) {
-        super(driver, wait);
+    public HomePage(final WebDriver webDriver, final WebDriverWait webDriverWait) {
+        super(webDriver, webDriverWait);
     }
 
-    /**
-     * Gets profile drop down.
-     *
-     * @return the profile drop down
-     */
-    public WebElement getProfileDropDown() {
-        return profileDropDown;
-    }
-
-    /**
-     * Sets profile drop down.
-     *
-     * @param profileDropDown the profile drop down
-     */
-    public void setProfileDropDown(final WebElement profileDropDown) {
-        this.profileDropDown = profileDropDown;
+    public ProjectPage createProject() {
+        createProjectBtn.click();
+        return new ProjectPage(webDriver, webDriverWait);
     }
 }
