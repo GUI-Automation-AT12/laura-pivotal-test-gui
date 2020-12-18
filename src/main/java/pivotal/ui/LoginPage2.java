@@ -1,9 +1,7 @@
 package pivotal.ui;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage2 extends BasePage {
     @FindBy(id = "credentials_password")
@@ -14,12 +12,9 @@ public class LoginPage2 extends BasePage {
 
     /**
      * Instantiates a new Login page 2.
-     *
-     * @param webDriver     the web driver
-     * @param webDriverWait the web driver wait
      */
-    public LoginPage2(final WebDriver webDriver, final WebDriverWait webDriverWait) {
-        super(webDriver, webDriverWait);
+    public LoginPage2() {
+        super();
     }
 
     /**
@@ -32,6 +27,6 @@ public class LoginPage2 extends BasePage {
         passwordTextBox.clear();
         passwordTextBox.sendKeys(password);
         loginBtn.click();
-        return new HomePage(getWebDriver(), getWebDriverWait());
+        return new HomePage();
     }
 }

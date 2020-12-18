@@ -1,9 +1,7 @@
 package pivotal.ui;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class InitialPage extends BasePage {
 
@@ -53,12 +51,9 @@ public class InitialPage extends BasePage {
     private WebElement consultancyDirectoryCommunity;
     /**
      * Instantiates a new Login page.
-     *
-     * @param webDriver     the webDriver
-     * @param webDriverWait the webDriverWait
      */
-    public InitialPage(final WebDriver webDriver, final WebDriverWait webDriverWait) {
-        super(webDriver, webDriverWait);
+    public InitialPage() {
+        super();
     }
 
     /**
@@ -68,6 +63,6 @@ public class InitialPage extends BasePage {
      */
     public LoginPage login() {
         loginBtn.click();
-        return new LoginPage(getWebDriver(), getWebDriverWait());
+        return new LoginPage();
     }
 }

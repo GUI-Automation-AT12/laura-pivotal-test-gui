@@ -4,29 +4,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WebDriverManager {
+public final class WebDriverManager {
     private WebDriverWait driverWait;
-    private WebDriver webDriver;
+    private static WebDriver webDriver;
+    private static WebDriverManager webDriverManager;
     private static final int TIMEOUT = 10;
 
     /**
      * Instantiates a new Web driver manager.
      */
-    public WebDriverManager() {
+    private WebDriverManager() {
         System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver.exe");
         webDriver = new ChromeDriver();
         driverWait = new WebDriverWait(webDriver, TIMEOUT);
     }
 
     /**
-     * Instantiates a new Web driver manager.
+     * Gets instance.
      *
-     * @param webDriverToSet  the web driver to set
-     * @param driverWaitToSet the driver wait to set
+     * @return the instance
      */
-    public WebDriverManager(final WebDriver webDriverToSet, final WebDriverWait driverWaitToSet) {
-        this.driverWait = driverWaitToSet;
-        this.webDriver = webDriverToSet;
+    public static WebDriverManager getInstance() {
+        if (webDriverManager == null) {
+            webDriverManager = new WebDriverManager();
+        }
+        return webDriverManager;
     }
 
     /**
@@ -47,4 +49,11 @@ public class WebDriverManager {
         return webDriver;
     }
 
+    /**
+     * Quit.
+     */
+    public static void quit() {
+        webDriver.quit();
+        webDriverManager = null;
+    }
 }

@@ -1,9 +1,7 @@
 package pivotal.ui;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
 
@@ -18,12 +16,9 @@ public class HomePage extends BasePage {
 
     /**
      * Instantiates a new Project page.
-     *
-     * @param webDriver the webDriver
-     * @param webDriverWait   the webDriverWait
      */
-    public HomePage(final WebDriver webDriver, final WebDriverWait webDriverWait) {
-        super(webDriver, webDriverWait);
+    public HomePage() {
+        super();
     }
 
     /**
@@ -33,7 +28,7 @@ public class HomePage extends BasePage {
      */
     public ProjectPage createProject() {
         createProjectBtn.click();
-        return new ProjectPage(getWebDriver(), getWebDriverWait());
+        return new ProjectPage();
     }
 
     /**

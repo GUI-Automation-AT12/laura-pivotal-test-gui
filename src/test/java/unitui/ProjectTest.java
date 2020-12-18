@@ -19,20 +19,27 @@ public class ProjectTest {
     private WebDriverManager webDriverManager;
     private ProjectPage projectPage;
     private ProjectPage2 projectPage2;
-    String email = Environment.getInstance().getEmail();
-    String password = Environment.getInstance().getPassword();
-    String name = "test";
-    String account = "";
+    private String email = Environment.getInstance().getEmail();
+    private String password = Environment.getInstance().getPassword();
+    private String name = "test";
+    private String account = "";
 
+    /**
+     * Sets up.
+     */
     @BeforeTest
     public void setUp() {
-        webDriverManager = new WebDriverManager();
+        WebDriverManager.getInstance();
         webDriverManager.getWebDriver().get(Environment.getInstance().getBaseUrl());
-        initialPage = new InitialPage(webDriverManager.getWebDriver(), webDriverManager.getDriverWait());
+        initialPage = new InitialPage();
         loginPage = initialPage.login();
         LoginPage2 loginPage2 = loginPage.login(email);
         homePage = loginPage2.login(password);
     }
+
+    /**
+     * Tear down.
+     */
     @AfterTest
     public void tearDown() {
         webDriverManager.getWebDriver().quit();

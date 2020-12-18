@@ -1,9 +1,7 @@
 package pivotal.ui;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProjectPage extends BasePage {
     @FindBy(xpath = "//input[@type='text']")
@@ -27,22 +25,8 @@ public class ProjectPage extends BasePage {
     private WebElement createBtn;
     /**
      * Instantiates a new Project page.
-     *
-     * @param webDriver     the web driver
-     * @param webDriverWait the web driver wait
      */
-    public ProjectPage(final WebDriver webDriver, final WebDriverWait webDriverWait) {
-        super(webDriver, webDriverWait);
-    }
-
-    /**
-     * Create project project page 2.
-     *
-     * @param name    the name
-     * @param account the account
-     * @return the project page 2
-     */
-    public ProjectPage2 createProject(final String name, final String account) {
-        return new ProjectPage2(getWebDriver(), getWebDriverWait());
+    public ProjectPage() {
+        super();
     }
 }

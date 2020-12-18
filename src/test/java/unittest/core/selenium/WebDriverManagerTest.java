@@ -7,14 +7,13 @@ import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
 
 public class WebDriverManagerTest {
-    private WebDriverManager webDriverManager = new WebDriverManager();
 
     /**
      * Quit web driver.
      */
     @AfterTest
     public void quitWebDriver() {
-        webDriverManager.getWebDriver().quit();
+        WebDriverManager.getInstance().getWebDriver().quit();
     }
 
     /**
@@ -22,7 +21,7 @@ public class WebDriverManagerTest {
      */
     @Test
     public void testInitNewWebDriverChrome() {
-        WebDriver actual = webDriverManager.getWebDriver();
+        WebDriver actual = WebDriverManager.getInstance().getWebDriver();
         Assert.assertNotNull(actual);
     }
 }
