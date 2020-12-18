@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
     @FindBy(xpath = "//button[@aria-label='Profile Dropdown']")
     private WebElement profileDropDown;
@@ -26,9 +26,14 @@ public class HomePage extends BasePage{
         super(webDriver, webDriverWait);
     }
 
+    /**
+     * Create project project page.
+     *
+     * @return the project page
+     */
     public ProjectPage createProject() {
         createProjectBtn.click();
-        return new ProjectPage(webDriver, webDriverWait);
+        return new ProjectPage(getWebDriver(), getWebDriverWait());
     }
 
     /**

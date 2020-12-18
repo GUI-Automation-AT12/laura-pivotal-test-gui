@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProjectPage extends BasePage{
+public class ProjectPage extends BasePage {
     @FindBy(xpath = "//input[@type='text']")
     private WebElement nameTextBox;
     @FindBy(xpath = "//span[@class='tc-account-selector__list-header-name']")
@@ -34,7 +34,15 @@ public class ProjectPage extends BasePage{
     public ProjectPage(final WebDriver webDriver, final WebDriverWait webDriverWait) {
         super(webDriver, webDriverWait);
     }
-    public ProjectPage2 createProject(String name, String account) {
-        return new ProjectPage2(webDriver, webDriverWait);
+
+    /**
+     * Create project project page 2.
+     *
+     * @param name    the name
+     * @param account the account
+     * @return the project page 2
+     */
+    public ProjectPage2 createProject(final String name, final String account) {
+        return new ProjectPage2(getWebDriver(), getWebDriverWait());
     }
 }

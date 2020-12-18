@@ -28,10 +28,10 @@ public class LoginPage2 extends BasePage {
      * @param password the password
      * @return the home page
      */
-    public HomePage login (final String password) {
+    public HomePage login(final String password) {
         passwordTextBox.clear();
         passwordTextBox.sendKeys(password);
         loginBtn.click();
-        return new HomePage(webDriver, webDriverWait);
+        return new HomePage(getWebDriver(), getWebDriverWait());
     }
 }

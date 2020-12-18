@@ -9,10 +9,14 @@ import org.openqa.selenium.WebDriver;
 public class WebDriverManagerTest {
     private WebDriverManager webDriverManager = new WebDriverManager();
 
+    /**
+     * Quit web driver.
+     */
     @AfterTest
     public void quitWebDriver() {
         webDriverManager.getWebDriver().quit();
     }
+
     /**
      * Tests if new instance of webdriver Chrome is created.
      */

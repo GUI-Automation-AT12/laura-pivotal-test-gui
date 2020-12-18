@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class InitialPage extends BasePage{
+public class InitialPage extends BasePage {
 
     @FindBy(css = "div.header__lg:nth-child(4) > a.header__link.header__link-signin:nth-child(4)")
     private WebElement loginBtn;
@@ -57,7 +57,7 @@ public class InitialPage extends BasePage{
      * @param webDriver     the webDriver
      * @param webDriverWait the webDriverWait
      */
-    public InitialPage(WebDriver webDriver, WebDriverWait webDriverWait) {
+    public InitialPage(final WebDriver webDriver, final WebDriverWait webDriverWait) {
         super(webDriver, webDriverWait);
     }
 
@@ -66,8 +66,8 @@ public class InitialPage extends BasePage{
      *
      * @return the home page
      */
-    public LoginPage login () {
+    public LoginPage login() {
         loginBtn.click();
-        return new LoginPage(webDriver, webDriverWait);
+        return new LoginPage(getWebDriver(), getWebDriverWait());
     }
 }

@@ -13,7 +13,6 @@ import pivotal.ui.InitialPage;
 import pivotal.ui.LoginPage;
 import pivotal.ui.LoginPage2;
 
-
 public class LoginTest {
     private InitialPage initialPage;
     private LoginPage loginPage;
@@ -22,11 +21,18 @@ public class LoginTest {
     private String email = Environment.getInstance().getEmail();
     private String password = Environment.getInstance().getPassword();
 
+    /**
+     * Sets up.
+     */
     @BeforeTest
     public void setUp() {
         webDriverManager = new WebDriverManager();
         webDriverManager.getWebDriver().get(Environment.getInstance().getBaseUrl());
     }
+
+    /**
+     * Tear down.
+     */
     @AfterTest
     public void tearDown() {
         webDriverManager.getWebDriver().quit();

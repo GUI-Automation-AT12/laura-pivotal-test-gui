@@ -4,9 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * PropertiesReader class.
- */
 public class Environment {
 
     private Properties property;
@@ -17,7 +14,7 @@ public class Environment {
     /**
      * Initializes an instance of properties files.
      *
-     * @param propertiesPath
+     * @param propertiesPath the properties path
      */
     public Environment(final String propertiesPath) {
         try {
@@ -81,7 +78,8 @@ public class Environment {
 
     /**
      * Gets environment property.
-     * @param env
+     *
+     * @param env the env
      * @return property value.
      */
     protected String getEnvProperty(final String env) {
@@ -98,5 +96,14 @@ public class Environment {
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
         }
+    }
+
+    /**
+     * Gets schemas path.
+     *
+     * @return the schemas path
+     */
+    public String getSchemasPath() {
+        return getEnvProperty("schemasPath");
     }
 }
