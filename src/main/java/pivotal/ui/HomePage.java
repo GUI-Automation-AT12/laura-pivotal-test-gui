@@ -1,14 +1,17 @@
 package pivotal.ui;
 
-import org.openqa.selenium.WebDriver;
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
     @FindBy(xpath = "//button[@aria-label='Profile Dropdown']")
     private WebElement profileDropDown;
+
+    @FindBy(css = "div:nth-child(1) > a.Dropdown__option.Dropdown__option--link:nth-child(3)")
+    private WebElement profileBtn;
 
     @FindBy(id = "create-project-button")
     private WebElement createProjectBtn;
@@ -17,15 +20,32 @@ public class HomePage extends BasePage{
     private WebElement signOutProfile;
 
     /**
-     * Instantiates a new Home page.
-     *
-     * @param driver the driver
-     * @param wait   the wait
+     * Instantiates a new Project page.
      */
-    public HomePage(final WebDriver driver, final WebDriverWait wait) {
-        super(driver, wait);
+    public HomePage() {
+        super();
     }
 
+    /**
+     * Create project project page.
+     *
+     * @return the project page
+     */
+    public ProjectPage createProject() {
+        createProjectBtn.click();
+        return new ProjectPage();
+    }
+
+    /**
+     * Gets profile user.
+     *
+     * @return the profile user
+     */
+    public ProfilePage getProfileUser() {
+        profileDropDown.click();
+        profileBtn.click();
+        return new ProfilePage();
+    }
 
     /**
      * Gets profile drop down.
@@ -34,14 +54,5 @@ public class HomePage extends BasePage{
      */
     public WebElement getProfileDropDown() {
         return profileDropDown;
-    }
-
-    /**
-     * Sets profile drop down.
-     *
-     * @param profileDropDown the profile drop down
-     */
-    public void setProfileDropDown(final WebElement profileDropDown) {
-        this.profileDropDown = profileDropDown;
     }
 }

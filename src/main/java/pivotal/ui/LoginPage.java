@@ -1,11 +1,9 @@
 package pivotal.ui;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     @FindBy(id = "credentials_username")
     private WebElement emailTextBox;
@@ -15,12 +13,9 @@ public class LoginPage extends BasePage{
 
     /**
      * Instantiates a new Login page.
-     *
-     * @param webDriver the webDriver
-     * @param webDriverWait   the webDriverWait
      */
-    public LoginPage(WebDriver webDriver, WebDriverWait webDriverWait) {
-        super(webDriver, webDriverWait);
+    public LoginPage() {
+        super();
     }
 
     /**
@@ -29,10 +24,10 @@ public class LoginPage extends BasePage{
      * @param email    the email
      * @return the Login Page 2
      */
-    public LoginPage2 login (final String email) {
+    public LoginPage2 login(final String email) {
         emailTextBox.clear();
         emailTextBox.sendKeys(email);
         nextBtn.click();
-        return new LoginPage2(webDriver, webDriverWait);
+        return new LoginPage2();
     }
 }

@@ -1,11 +1,11 @@
 package pivotal.ui;
 
-import org.openqa.selenium.WebDriver;
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pivotal.config.Environment;
 
-public class InitialPage extends BasePage{
+public class InitialPage extends BasePage {
 
     @FindBy(css = "div.header__lg:nth-child(4) > a.header__link.header__link-signin:nth-child(4)")
     private WebElement loginBtn;
@@ -53,12 +53,9 @@ public class InitialPage extends BasePage{
     private WebElement consultancyDirectoryCommunity;
     /**
      * Instantiates a new Login page.
-     *
-     * @param webDriver     the webDriver
-     * @param webDriverWait the webDriverWait
      */
-    public InitialPage(WebDriver webDriver, WebDriverWait webDriverWait) {
-        super(webDriver, webDriverWait);
+    public InitialPage() {
+        super();
     }
 
     /**
@@ -66,8 +63,9 @@ public class InitialPage extends BasePage{
      *
      * @return the home page
      */
-    public LoginPage login () {
+    public LoginPage login() {
+        WebDriverManager.getInstance().getWebDriver().get(Environment.getInstance().getBaseUrl());
         loginBtn.click();
-        return new LoginPage(webDriver, webDriverWait);
+        return new LoginPage();
     }
 }
