@@ -1,7 +1,9 @@
 package pivotal.ui;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pivotal.config.Environment;
 
 public class InitialPage extends BasePage {
 
@@ -62,6 +64,7 @@ public class InitialPage extends BasePage {
      * @return the home page
      */
     public LoginPage login() {
+        WebDriverManager.getInstance().getWebDriver().get(Environment.getInstance().getBaseUrl());
         loginBtn.click();
         return new LoginPage();
     }

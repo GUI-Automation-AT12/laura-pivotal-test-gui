@@ -1,12 +1,17 @@
 package pivotal.ui;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "//button[@aria-label='Profile Dropdown']")
     private WebElement profileDropDown;
+
+    @FindBy(css = "div:nth-child(1) > a.Dropdown__option.Dropdown__option--link:nth-child(3)")
+    private WebElement profileBtn;
 
     @FindBy(id = "create-project-button")
     private WebElement createProjectBtn;
@@ -29,6 +34,17 @@ public class HomePage extends BasePage {
     public ProjectPage createProject() {
         createProjectBtn.click();
         return new ProjectPage();
+    }
+
+    /**
+     * Gets profile user.
+     *
+     * @return the profile user
+     */
+    public ProfilePage getProfileUser() {
+        profileDropDown.click();
+        profileBtn.click();
+        return new ProfilePage();
     }
 
     /**
