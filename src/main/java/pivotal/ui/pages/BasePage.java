@@ -1,4 +1,4 @@
-package pivotal.ui;
+package pivotal.ui.pages;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;
