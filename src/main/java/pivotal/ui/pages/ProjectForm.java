@@ -31,6 +31,13 @@ public class ProjectForm extends BasePage {
     private WebElement createBtn;
 
     /**
+     * Instantiates a new Project form.
+     */
+    public ProjectForm() {
+        super();
+    }
+
+    /**
      * Create project.
      *
      * @param newProject the new project
