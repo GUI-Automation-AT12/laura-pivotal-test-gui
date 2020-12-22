@@ -8,10 +8,10 @@ import org.testng.annotations.AfterTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pivotal.config.Environment;
-import pivotal.ui.HomePage;
-import pivotal.ui.InitialPage;
-import pivotal.ui.LoginPage;
-import pivotal.ui.LoginPage2;
+import pivotal.ui.pages.HomePage;
+import pivotal.ui.pages.InitialPage;
+import pivotal.ui.pages.LoginPage;
+import pivotal.ui.pages.LoginPage2;
 
 public class LoginTest {
     private InitialPage initialPage;
@@ -46,7 +46,7 @@ public class LoginTest {
         LoginPage2 loginPage2 = loginPage.login(email);
         homePage = loginPage2.login(password);
         WebElement actual = homePage.getProfileDropDown();
-        WebElement expected = WebDriverManager.getInstance().getWebDriver().findElement(By.xpath("//button[contains(text(),'testauto20202')]"));
+        WebElement expected = WebDriverManager.getInstance().getWebDriver().findElement(By.xpath("//button[contains(text(),'testauto2020')]"));
         Assert.assertEquals(actual, expected);
     }
 }
