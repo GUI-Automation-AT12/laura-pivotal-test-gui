@@ -1,12 +1,15 @@
 package pivotal.ui.pages;
 
-import core.IStrategySetter;
 import core.utils.WebElementInteractor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static pivotal.constants.ProjectIdentifiers.PROJECT_NAME;
+import static pivotal.constants.ProjectIdentifiers.PROJECT_PRIVACY;
+import static pivotal.constants.ProjectIdentifiers.ACCOUNT;
 
 public class ProjectForm extends BasePage {
     @FindBy(xpath = "//input[@type='text']")
@@ -43,23 +46,23 @@ public class ProjectForm extends BasePage {
      * @param newProject the new project
      */
     public void createProject(final Map<String, String> newProject) {
-        final HashMap<String, IStrategySetter> strategyMap = composeStrategyMap(newProject);
+        final HashMap<String, Runnable> strategyMap = composeStrategyMap(newProject);
         newProject.keySet().forEach(key -> {
-            strategyMap.get(key).executeMethod();
-        });
+            strategyMap.get(key).run(); });
     }
 
+
     /**
-     * Compose strategy map hash map.
+     * Compose strategy hash map.
      *
-     * @param newProject the new project
+     * @param projectInformation the project information
      * @return the hash map
      */
-    public HashMap<String, IStrategySetter> composeStrategyMap(final Map<String, String> newProject) {
-        final HashMap<String, IStrategySetter> strategyMap = new HashMap<>();
-        strategyMap.put("Project Name", () -> setProjectName(newProject.get("Project Name")));
-        strategyMap.put("Account", () -> setAccount(newProject.get("Account")));
-        strategyMap.put("Project privacy", () -> setProjectPrivacy(newProject.get("Project privacy")));
+    public HashMap<String, Runnable> composeStrategyMap(final Map<String, String> projectInformation) {
+        final HashMap<String, Runnable> strategyMap = new HashMap<>();
+        strategyMap.put(PROJECT_NAME, () -> setProjectName(projectInformation.get(PROJECT_NAME)));
+        strategyMap.put(ACCOUNT, () -> setAccount(projectInformation.get(ACCOUNT)));
+        strategyMap.put(PROJECT_PRIVACY, () -> setProjectPrivacy(projectInformation.get(PROJECT_PRIVACY)));
         return strategyMap;
     }
 
@@ -68,14 +71,10 @@ public class ProjectForm extends BasePage {
     }
 
     private void setAccount(final String account) {
-       // Select selectElement = new Select(selectAccountDropDown);
-       // selectElement.selectByVisibleText(account);
         selectAccountDropDown.click();
         if ("Untitled".equals(account)) {
             myAccountOption.click();
         }
-      //  Actions keyDown = new Actions(getWebDriver());
-       // keyDown.sendKeys(Keys.chord(Keys.DOWN, Keys.DOWN)).perform();
     }
 
     private void setProjectPrivacy(final String projectPrivacy) {

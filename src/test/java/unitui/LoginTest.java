@@ -3,7 +3,6 @@ package unitui;
 import core.selenium.WebDriverManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

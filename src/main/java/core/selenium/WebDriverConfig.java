@@ -3,7 +3,7 @@ package core.selenium;
 import pivotal.config.Environment;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class WebDriverConfig {
+public final class WebDriverConfig {
 
     private static final String BROWSER = "browser";
     private static final String IMPLICIT_WAIT_TIME = "implicitWaitTime";

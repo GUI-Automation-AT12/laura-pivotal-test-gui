@@ -8,13 +8,23 @@ import org.openqa.selenium.WebDriver;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WebDriverFactory {
+public final class WebDriverFactory {
+
     private static Map<String, IDriver> browsers = new HashMap<>();
     static {
         browsers.put("chrome", new Chrome());
         browsers.put("firefox", new Firefox());
     }
 
+    private WebDriverFactory() {
+    }
+
+    /**
+     * Gets web driver.
+     *
+     * @param browser the browser
+     * @return the web driver
+     */
     public static WebDriver getWebDriver(final String browser) {
         return browsers.get(browser).initDriver();
     }

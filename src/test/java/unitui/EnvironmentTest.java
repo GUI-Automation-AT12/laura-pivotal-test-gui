@@ -12,7 +12,7 @@ public class EnvironmentTest {
     @Test
     public void testBaseUrlIsLoadedFromGradleFile() {
         String expected = "https://www.pivotaltracker.com/";
-        String actual= Environment.getInstance().getProperties().get("baseUrl");
+        String actual = Environment.getInstance().getProperties().get("baseUrl");
         Assert.assertEquals(actual, expected);
     }
 
@@ -22,7 +22,7 @@ public class EnvironmentTest {
     @Test
     public void testBrowserIsLoadedFromDriverFile() {
         String expected = "chrome";
-        String actual= Environment.getInstance().getProperties().get("browser");
+        String actual = Environment.getInstance().getProperties().get("browser");
         Assert.assertEquals(actual, expected);
     }
 }
