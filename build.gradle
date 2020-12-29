@@ -21,6 +21,7 @@ dependencies {
     compile group: 'io.cucumber', name: 'cucumber-picocontainer', version: '5.7.0'
     // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    compile("io.github.bonigarcia:webdrivermanager:3.7.0")
 }
 
 test {

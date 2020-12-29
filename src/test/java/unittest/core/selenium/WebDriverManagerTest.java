@@ -22,6 +22,6 @@ public class WebDriverManagerTest {
     @Test
     public void testInitNewWebDriverChrome() {
         WebDriver actual = WebDriverManager.getInstance().getWebDriver();
-        Assert.assertNotNull(actual);
+        Assert.assertNotNull(actual, "Web Driver initialized successfully");
     }
 }
