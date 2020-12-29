@@ -64,7 +64,7 @@ public class InitialPage extends BasePage {
      * @return the home page
      */
     public LoginPage login() {
-        WebDriverManager.getInstance().getWebDriver().get(Environment.getInstance().getBaseUrl());
+        WebDriverManager.getInstance().getWebDriver().get(Environment.getInstance().getProperties().get("baseUrl"));
         loginBtn.click();
         return new LoginPage();
     }

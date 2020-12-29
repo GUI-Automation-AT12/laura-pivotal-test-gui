@@ -2,29 +2,56 @@ package pivotal.config;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Environment {
 
-    private Properties property;
-    private FileReader reader;
     private static final String GRADLE_FILE = "gradle.properties";
+    private static final String DRIVER_FILE = "driver.properties";
     private static Environment environment;
+    private Map<String, String> properties;
+    private Properties property;
+    private FileReader fileReader;
 
     /**
-     * Initializes an instance of properties files.
-     *
-     * @param propertiesPath the properties path
+     * Instantiates a new Environment.
      */
-    public Environment(final String propertiesPath) {
+    protected Environment() {
+        properties = new HashMap<>();
+        addPropertiesGradle();
+        addPropertiesDriver();
+    }
+
+    private void addPropertiesGradle() {
+        Properties propertiesGradle = loadFile(GRADLE_FILE);
+        propertiesGradle.forEach((key, value) -> properties.put(key.toString(), value.toString()));
+    }
+
+    private void addPropertiesDriver() {
+        Properties propertiesDriver = loadFile(DRIVER_FILE);
+        propertiesDriver.forEach((key, value) -> properties.put(key.toString(), value.toString()));
+    }
+
+    private Properties loadFile(final String propertiesPath) {
+        property = new Properties();
         try {
-            reader = new FileReader(propertiesPath);
-            property = new Properties();
-            property.load(reader);
+            fileReader = new FileReader(propertiesPath);
+            property.load(fileReader);
         } catch (IOException exception) {
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
         } finally {
             closeReader();
+        }
+        return property;
+    }
+
+    private void closeReader() {
+        try {
+            fileReader.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -35,75 +62,17 @@ public class Environment {
      */
     public static Environment getInstance() {
         if (environment == null) {
-            environment = new Environment(GRADLE_FILE);
+            environment = new Environment();
         }
         return environment;
     }
 
     /**
-     * Get baseUrl.
+     * Gets properties.
      *
-     * @return the base url.
+     * @return the properties
      */
-    public String getBaseUrl() {
-        return getEnvProperty("baseUrl");
-    }
-
-    /**
-     * Gets token.
-     *
-     * @return the token
-     */
-    public String getToken() {
-        return getEnvProperty("token");
-    }
-
-    /**
-     * Gets email.
-     *
-     * @return the email
-     */
-    public String getEmail() {
-        return getEnvProperty("email");
-    }
-
-    /**
-     * Gets password.
-     *
-     * @return the password
-     */
-    public String getPassword() {
-        return getEnvProperty("password");
-    }
-
-    /**
-     * Gets environment property.
-     *
-     * @param env the env
-     * @return property value.
-     */
-    protected String getEnvProperty(final String env) {
-        String localProperty = System.getProperty(env);
-        if (localProperty == null) {
-            return this.property.getProperty(env);
-        }
-        return localProperty;
-    }
-
-    private void closeReader() {
-        try {
-            reader.close();
-        } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    /**
-     * Gets schemas path.
-     *
-     * @return the schemas path
-     */
-    public String getSchemasPath() {
-        return getEnvProperty("schemasPath");
+    public Map<String, String> getProperties() {
+        return properties;
     }
 }
