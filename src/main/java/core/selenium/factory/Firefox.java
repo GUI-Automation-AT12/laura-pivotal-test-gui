@@ -14,7 +14,6 @@ public class Firefox implements IDriver {
      */
     public WebDriver initDriver() {
         FirefoxDriverManager.getInstance(FirefoxDriver.class).setup();
-        //WebDriverManager.firefoxdriver().setup();
         return new FirefoxDriver();
     }
 }
