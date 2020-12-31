@@ -29,10 +29,10 @@ public class Context {
     /**
      * Sets user.
      *
-     * @param user the user
+     * @param userToSet the user to set
      */
-    public void setUser(final User user) {
-        this.user = user;
+    public void setUser(final User userToSet) {
+        this.user = userToSet;
     }
 
     /**
@@ -47,9 +47,9 @@ public class Context {
     /**
      * Sets project.
      *
-     * @param project the project
+     * @param projectToSet the project to set
      */
-    public void setProject(final Project project) {
-        this.project = project;
+    public void setProject(final Project projectToSet) {
+        this.project = projectToSet;
     }
 }

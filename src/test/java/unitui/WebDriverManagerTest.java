@@ -1,4 +1,4 @@
-package unittest.core.selenium;
+package unitui;
 
 import core.selenium.WebDriverManager;
 import org.testng.Assert;

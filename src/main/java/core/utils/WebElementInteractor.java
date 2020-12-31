@@ -3,6 +3,12 @@ package core.utils;
 import org.openqa.selenium.WebElement;
 
 public final class WebElementInteractor {
+
+    /**
+     * Constructor private.
+     */
+    private WebElementInteractor() { }
+
     /**
      * Sets the text into the webElement.
      *
@@ -15,7 +21,12 @@ public final class WebElementInteractor {
     }
 
     /**
-     * Constructor private.
+     * Gets txt.
+     *
+     * @param webElement the web element
+     * @return the txt
      */
-    private WebElementInteractor() { }
+    public static String getTxt(final WebElement webElement) {
+        return webElement.getText();
+    }
 }

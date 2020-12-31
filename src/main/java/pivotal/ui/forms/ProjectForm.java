@@ -1,8 +1,9 @@
-package pivotal.ui.pages;
+package pivotal.ui.forms;
 
 import core.utils.WebElementInteractor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pivotal.ui.pages.BasePage;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import static pivotal.constants.UserIdentifiers.USER_NAME;
 import static pivotal.constants.UserIdentifiers.NAME;
@@ -21,7 +22,7 @@ public class User {
     private String startPage;
     private String timeZone;
     private String defaultStoryType;
-    private Set<String> userKeys = new HashSet<String>();
+    private Set<String> updatedFields = new HashSet<String>();
 
     /**
      * Gets user name.
@@ -40,7 +41,7 @@ public class User {
     public void setUserName(final String userNameToSet) {
         String id = Long.toString(new Date().getTime());
         this.userName = userNameToSet.replaceAll("UNIQUE_ID", id);
-        userKeys.add(USER_NAME);
+        updatedFields.add(USER_NAME);
     }
 
     /**
@@ -58,8 +59,9 @@ public class User {
      * @param nameToSet the name
      */
     public void setName(final String nameToSet) {
-        this.name = nameToSet;
-        userKeys.add(NAME);
+        String id = Long.toString(new Date().getTime());
+        this.name = nameToSet.replaceAll("UNIQUE_ID", id);
+        updatedFields.add(NAME);
     }
 
     /**
@@ -78,7 +80,7 @@ public class User {
      */
     public void setInitials(final String initialsToSet) {
         this.initials = initialsToSet;
-        userKeys.add(INITIALS);
+        updatedFields.add(INITIALS);
     }
 
     /**
@@ -97,7 +99,7 @@ public class User {
      */
     public void setStartPage(final String startPageToSet) {
         this.startPage = startPageToSet;
-        userKeys.add(START_PAGE);
+        updatedFields.add(START_PAGE);
     }
 
     /**
@@ -116,7 +118,7 @@ public class User {
      */
     public void setTimeZone(final String timeZoneToSet) {
         this.timeZone = timeZoneToSet;
-        userKeys.add(TIME_ZONE);
+        updatedFields.add(TIME_ZONE);
     }
 
     /**
@@ -135,7 +137,16 @@ public class User {
      */
     public void setDefaultStoryType(final String defaultStoryTypeToSet) {
         this.defaultStoryType = defaultStoryTypeToSet;
-        userKeys.add(DEFAULT_STORY_TYPE);
+        updatedFields.add(DEFAULT_STORY_TYPE);
+    }
+
+    /**
+     * Gets updated fields.
+     *
+     * @return the updated fields
+     */
+    public Set<String> getUpdatedFields() {
+        return updatedFields;
     }
 
     /**
@@ -144,7 +155,7 @@ public class User {
      * @param userInformation the user information
      */
     public void processInformation(final Map<String, String> userInformation) {
-        final HashMap<String, Runnable> strategyMap = composeMyProfileMap(userInformation);
+        HashMap<String, Runnable> strategyMap = composeMyProfileMap(userInformation);
         userInformation.keySet().forEach(key -> {
             strategyMap.get(key).run(); });
     }
@@ -156,13 +167,33 @@ public class User {
      * @return the hash map
      */
     public HashMap<String, Runnable> composeMyProfileMap(final Map<String, String> userInformation) {
-        final HashMap<String, Runnable> myProfileMap = new HashMap<>();
-        myProfileMap.put(USER_NAME, () -> setName(userInformation.get(USER_NAME)));
+        HashMap<String, Runnable> myProfileMap = new HashMap<>();
+        myProfileMap.put(USER_NAME, () -> setUserName(userInformation.get(USER_NAME)));
         myProfileMap.put(NAME, () -> setName(userInformation.get(NAME)));
         myProfileMap.put(INITIALS, () -> setInitials(userInformation.get(INITIALS)));
         myProfileMap.put(START_PAGE, () -> setStartPage(userInformation.get(START_PAGE)));
         myProfileMap.put(TIME_ZONE, () -> setTimeZone(userInformation.get(TIME_ZONE)));
         myProfileMap.put(DEFAULT_STORY_TYPE, () -> setDefaultStoryType(userInformation.get(DEFAULT_STORY_TYPE)));
         return myProfileMap;
+    }
+
+    private HashMap<String, Supplier<String>> composeStrategyGetterMap() {
+        HashMap<String, Supplier<String>> strategyMap = new HashMap<>();
+        strategyMap.put(USER_NAME, () -> getUserName());
+        strategyMap.put(NAME, () -> getName());
+        strategyMap.put(INITIALS, () -> getInitials());
+        return strategyMap;
+    }
+
+    /**
+     * Gets updated info.
+     *
+     * @return the updated info
+     */
+    public Map<String, String> getUpdatedInfo() {
+        Map<String, String> userInfoMap = new HashMap<>();
+        HashMap<String, Supplier<String>> strategyMap = composeStrategyGetterMap();
+        updatedFields.forEach(field -> userInfoMap.put(field, strategyMap.get(field).get()));
+        return userInfoMap;
     }
 }
