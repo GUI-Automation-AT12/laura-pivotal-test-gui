@@ -16,7 +16,7 @@ public class PageTransporter {
      * Constructor of page transporter.
      */
     protected PageTransporter() {
-        webDriver = WebDriverManager.getInstance().getWebDriver();
+//        webDriver = WebDriverManager.getInstance().getWebDriver();
     }
 
     /**
@@ -50,7 +50,8 @@ public class PageTransporter {
      * @param keyUrl for navigate.
      */
     public void navigateToPage(final String keyUrl) {
-        String baseUrl = Environment.getInstance().getBaseUrl();
+        //String baseUrl = Environment.getInstance().getBaseUrl();
+        String baseUrl = Environment.getInstance().getProperties().get("baseUrl");
         goToURL(baseUrl.concat(keyUrl));
     }
 }

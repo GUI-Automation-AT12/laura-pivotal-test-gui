@@ -21,7 +21,7 @@ public class JsonDataReader {
     public String jsonReader(final String key, final String filePath) {
         String data = "";
         try {
-            File srcFile = new File(Environment.getInstance().getSchemasPath() + filePath);
+            File srcFile = new File(Environment.getInstance().getProperties().get("schemasPath") + filePath);
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(srcFile));
             data = (String) jsonObject.get(key);

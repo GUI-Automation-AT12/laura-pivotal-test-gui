@@ -17,16 +17,8 @@ public class LoginTest {
     private InitialPage initialPage;
     private LoginPage loginPage;
     private HomePage homePage;
-    private String email = Environment.getInstance().getEmail();
-    private String password = Environment.getInstance().getPassword();
-
-    /**
-     * Sets up.
-     */
-    @BeforeTest
-    public void setUp() {
-        WebDriverManager.getInstance().getWebDriver().get(Environment.getInstance().getBaseUrl());
-    }
+    private String email = Environment.getInstance().getProperties().get("email");
+    private String password = Environment.getInstance().getProperties().get("password");
 
     /**
      * Tear down.
