@@ -16,9 +16,8 @@ public class LoginSteps {
      */
     @Given("^I log in to Pivotal with (.*?) credentials$")
     public void logIn(final String userAlias) {
-  //  public void logIn() {
-        String email = Environment.getInstance().getEmail();
-        String password = Environment.getInstance().getPassword();
+        String email = Environment.getInstance().getProperties().get("email");
+        String password = Environment.getInstance().getProperties().get("password");
         initialPage = new InitialPage();
         homePage = initialPage.login().login(email).login(password);
     }

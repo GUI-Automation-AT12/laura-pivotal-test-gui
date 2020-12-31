@@ -5,7 +5,7 @@ Feature: Create project
     Given I log in to Pivotal with Editable User credentials
     When I open the create project dialog in projects tab
       And I edit the Project Form with the following information
-        | Project Name    | demo     |
+        | Project Name    | demo UNIQUE_ID |
         | Account         | Untitled |
         | Project privacy | Private  |
       And I select the untitled account in the account selector Dropdown menu
