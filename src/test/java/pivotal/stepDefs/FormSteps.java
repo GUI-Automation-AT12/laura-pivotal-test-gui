@@ -31,9 +31,10 @@ public class FormSteps {
      */
     @And("^I edit My Profile with the following information$")
     public void editMyProfileWithTheFollowingInformation(final Map<String, String> data) {
+        context.saveActualUser();
         User user = new User();
         user.processInformation(data);
-        context.setUser(user);
+        context.saveNewUser(user);
         profilePage.editProfile(data.keySet(), user);
     }
 

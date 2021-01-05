@@ -1,6 +1,8 @@
 package pivotal.entities;
 
 import core.utils.IdGenerator;
+import core.utils.JsonDataReader;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;

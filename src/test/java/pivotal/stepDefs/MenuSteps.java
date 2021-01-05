@@ -1,13 +1,11 @@
 package pivotal.stepDefs;
 
 import io.cucumber.java.en.When;
-import pivotal.context.Context;
 import pivotal.ui.bares.TopNavigationBar;
 import pivotal.ui.pages.HomePage;
 
 public class MenuSteps {
 
-    private Context context;
     private TopNavigationBar topNavigationBar;
 
     /**

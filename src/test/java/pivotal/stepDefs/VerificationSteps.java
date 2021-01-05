@@ -24,7 +24,7 @@ public class VerificationSteps {
      */
     public VerificationSteps(final Context contextToSet) {
         this.context = contextToSet;
-        this.user = context.getUser();
+      //  this.user = context.getUser();
     }
 
     /**
@@ -33,6 +33,7 @@ public class VerificationSteps {
     @Then("my User Name should be updated in the Top Menu")
     public void verifyUserNameIsUpdatedInTheTopMenu() {
         String userNameFromTopMenu = topNavigationBar.getTextFromUserMenu();
+        User user = context.getNewUser();
         String actualValue = user.getUserName().toUpperCase();
   //      Assert.assertEquals(actualValue, userNameFromTopMenu);
     }
@@ -55,7 +56,7 @@ public class VerificationSteps {
     public void verifyUserInformationIsUpdatedInMyProfileSection() {
         SoftAssert softAssert = new SoftAssert();
         Map<String, String> actualProfileInfo = profilePage.getMyProfileMap();
-        Map<String, String> expectedProfileInfo = user.getUserInfo();
+        Map<String, String> expectedProfileInfo = context.getNewUser().getUserInfo();
         actualProfileInfo.forEach((field, actualValue) -> {
             softAssert.assertEquals(actualValue, expectedProfileInfo.get(field));
         });

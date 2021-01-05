@@ -6,29 +6,16 @@ import org.openqa.selenium.WebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PageTransporter {
+public final class PageTransporter {
 
-    private WebDriver webDriver;
-    private static PageTransporter instance;
+    private static WebDriver webDriver;
     private static final String BASE_URL = "https://www.pivotaltracker.com/";
 
     /**
      * Constructor of page transporter.
      */
-    protected PageTransporter() {
+    public PageTransporter() {
         webDriver = WebDriverManager.getInstance().getWebDriver();
-    }
-
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
-    public static PageTransporter getInstance() {
-        if (instance == null) {
-            instance = new PageTransporter();
-        }
-        return instance;
     }
 
     /**
@@ -36,7 +23,7 @@ public class PageTransporter {
      *
      * @param url for navigate.
      */
-    private void goToURL(final String url) {
+    private static void goToURL(final String url) {
         try {
             webDriver.navigate().to(new URL(url));
         } catch (MalformedURLException e) {
@@ -49,7 +36,7 @@ public class PageTransporter {
      *
      * @param pageName for navigate.
      */
-    public void navigateToPage(final String pageName) {
+    public static void navigateToPage(final String pageName) {
         String keyUrl = Permalink.getPermalink(pageName.toUpperCase());
         goToURL(BASE_URL.concat(keyUrl));
     }
