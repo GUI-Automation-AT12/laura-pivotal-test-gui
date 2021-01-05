@@ -1,5 +1,6 @@
 package pivotal.ui.pages;
 
+import core.utils.WebElementInteractor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -25,8 +26,7 @@ public class LoginPage extends BasePage {
      * @return the Login Page 2
      */
     public LoginPage2 login(final String email) {
-        emailTextBox.clear();
-        emailTextBox.sendKeys(email);
+        WebElementInteractor.setTxt(emailTextBox, email);
         nextBtn.click();
         return new LoginPage2();
     }

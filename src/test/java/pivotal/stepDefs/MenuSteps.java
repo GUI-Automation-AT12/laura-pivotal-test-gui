@@ -5,15 +5,15 @@ import pivotal.context.Context;
 import pivotal.ui.bares.TopNavigationBar;
 import pivotal.ui.pages.HomePage;
 
-public class ActionSteps {
+public class MenuSteps {
 
     private Context context;
-    private TopNavigationBar topNavigationBar = new TopNavigationBar();
+    private TopNavigationBar topNavigationBar;
 
     /**
      * Instantiates a new Action steps.
      */
-    public ActionSteps() {
+    public MenuSteps() {
     }
 
     /**
@@ -30,6 +30,7 @@ public class ActionSteps {
      */
     @When("I open the User Dropdown Menu from Top Menu")
     public void openTheUserDropdownMenuFromTopMenu() {
+        topNavigationBar = new TopNavigationBar();
         topNavigationBar.openUserMenuDropdown();
     }
 }

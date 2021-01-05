@@ -9,16 +9,11 @@ public final class WebDriverManager {
     private WebDriverWait webDriverWait;
     private static WebDriver webDriver;
     private static WebDriverManager webDriverManager;
-  //  private static final int TIMEOUT = 10;
 
     /**
      * Instantiates a new Web driver manager.
      */
     private WebDriverManager() {
-       /* System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver.exe");
-        webDriver = new ChromeDriver();
-        driverWait = new WebDriverWait(webDriver, TIMEOUT);*/
-
         this.webDriver = WebDriverFactory.getWebDriver(WebDriverConfig.getInstance().getBrowser());
         this.webDriver.manage().window().maximize();
         this.webDriver.manage().timeouts().implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(),
@@ -49,7 +44,7 @@ public final class WebDriverManager {
     }
 
     /**
-     * Quit.
+     * Quit web driver session.
      */
     public static void quit() {
         webDriver.quit();

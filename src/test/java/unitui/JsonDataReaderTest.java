@@ -2,19 +2,20 @@ package unitui;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pivotal.utils.JsonDataReader;
+import core.utils.JsonDataReader;
 
 public class JsonDataReaderTest {
-    private String filePath = "meResponse.json";
-    private String key = "name";
+    private String filePath = "users.json";
+    private String key = "Name";
+    private String identifier = "user";
 
     /**
      * Test json read name.
      */
     @Test
     public void testJsonReadName() {
-      String expected = "testauto21";
-      String actual = new JsonDataReader().jsonReader(key, filePath);
+      String expected = "Auto";
+      String actual = new JsonDataReader(filePath).getValueData(identifier, key);
       Assert.assertEquals(actual, expected);
     }
 }

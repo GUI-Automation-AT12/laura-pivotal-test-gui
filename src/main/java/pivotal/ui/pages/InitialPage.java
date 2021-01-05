@@ -28,43 +28,22 @@ public class InitialPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Sign up with Google')]")
     private WebElement signUpGoogleLink;
 
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(1)")
-    private WebElement featuresProduct;
+    private static final String BASE_URL = "https://www.pivotaltracker.com/";
 
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(2)")
-    private WebElement pricingProduct;
-
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(3)")
-    private WebElement integrationProduct;
-
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(4)")
-    private WebElement enterpriseProduct;
-
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(6)")
-    private WebElement eventsCommunity;
-
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(7)")
-    private WebElement buildTvCommunity;
-
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(8)")
-    private WebElement customerStoriesCommunity;
-
-    @FindBy(css = "div.header__md:nth-child(3) div.subheader__dropdown-content.header__dropdown-content > a.subheader__dropdown-link.header__dropdown-link:nth-child(9)")
-    private WebElement consultancyDirectoryCommunity;
     /**
-     * Instantiates a new Login page.
+     * Instantiates a new Initial page.
      */
     public InitialPage() {
         super();
     }
 
     /**
-     * Login home page.
+     * Login to pivotal.
      *
-     * @return the home page
+     * @return the login page
      */
     public LoginPage login() {
-        WebDriverManager.getInstance().getWebDriver().get(Environment.getInstance().getProperties().get("baseUrl"));
+        WebDriverManager.getInstance().getWebDriver().get(BASE_URL);
         loginBtn.click();
         return new LoginPage();
     }

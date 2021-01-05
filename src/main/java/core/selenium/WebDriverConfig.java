@@ -16,7 +16,6 @@ public final class WebDriverConfig {
     private int waitSleepTime;
 
     private WebDriverConfig() {
-        WebDriverManager.chromedriver().setup();
         browser = Environment.getInstance().getProperties().get(BROWSER);
         implicitWaitTime = Integer.parseInt(Environment.getInstance().getProperties().get(IMPLICIT_WAIT_TIME));
         timeout = Integer.parseInt(Environment.getInstance().getProperties().get(TIMEOUT));

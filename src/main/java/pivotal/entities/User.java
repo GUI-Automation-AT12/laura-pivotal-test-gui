@@ -1,6 +1,6 @@
 package pivotal.entities;
 
-import java.util.Date;
+import core.utils.IdGenerator;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
@@ -23,6 +23,7 @@ public class User {
     private String timeZone;
     private String defaultStoryType;
     private Set<String> updatedFields = new HashSet<String>();
+    private final static String ID = "UNIQUE_ID";
 
     /**
      * Gets user name.
@@ -39,8 +40,7 @@ public class User {
      * @param userNameToSet the user name
      */
     public void setUserName(final String userNameToSet) {
-        String id = Long.toString(new Date().getTime());
-        this.userName = userNameToSet.replaceAll("UNIQUE_ID", id);
+        this.userName = userNameToSet.replaceAll(ID, IdGenerator.getUniqueId());
         updatedFields.add(USER_NAME);
     }
 
@@ -59,8 +59,7 @@ public class User {
      * @param nameToSet the name
      */
     public void setName(final String nameToSet) {
-        String id = Long.toString(new Date().getTime());
-        this.name = nameToSet.replaceAll("UNIQUE_ID", id);
+        this.name = nameToSet.replaceAll(ID, IdGenerator.getUniqueId());
         updatedFields.add(NAME);
     }
 
@@ -186,11 +185,11 @@ public class User {
     }
 
     /**
-     * Gets updated info.
+     * Gets user info.
      *
-     * @return the updated info
+     * @return the user info
      */
-    public Map<String, String> getUpdatedInfo() {
+    public Map<String, String> getUserInfo() {
         Map<String, String> userInfoMap = new HashMap<>();
         HashMap<String, Supplier<String>> strategyMap = composeStrategyGetterMap();
         updatedFields.forEach(field -> userInfoMap.put(field, strategyMap.get(field).get()));

@@ -62,24 +62,24 @@ public class ProfilePage extends BasePage {
     }
 
     private void setInformationToEdit(final Set<String> formFields, final User user) {
-        HashMap<String, Runnable> strategyMap = composeMyProfileMap(formFields, user);
+        HashMap<String, Runnable> strategyMap = composeStrategySetterMap(formFields, user);
         formFields.forEach(key -> strategyMap.get(key).run());
     }
 
-    /**
-     * Edit profile.
-     *
-     * @param username the username
-     * @param name     the name
-     * @param initials the initials
-     */
-    public void editProfile(final String username, final String name, final String initials) {
-        editBtn.click();
-        WebElementInteractor.setTxt(usernameTextBox, username);
-        WebElementInteractor.setTxt(nameTextBox, name);
-        WebElementInteractor.setTxt(initialsTextBox, initials);
-        saveBtn.click();
-    }
+//    /**
+//     * Edit profile.
+//     *
+//     * @param username the username
+//     * @param name     the name
+//     * @param initials the initials
+//     */
+//    public void editProfile(final String username, final String name, final String initials) {
+//        editBtn.click();
+//        WebElementInteractor.setTxt(usernameTextBox, username);
+//        WebElementInteractor.setTxt(nameTextBox, name);
+//        WebElementInteractor.setTxt(initialsTextBox, initials);
+//        saveBtn.click();
+//    }
 
     /**
      * Compose my profile map hash map.
@@ -88,7 +88,7 @@ public class ProfilePage extends BasePage {
      * @param user   the user
      * @return the hash map
      */
-    public HashMap<String, Runnable> composeMyProfileMap(final Set<String> fields, final User user) {
+    public HashMap<String, Runnable> composeStrategySetterMap(final Set<String> fields, final User user) {
         final HashMap<String, Runnable> myProfileMap = new HashMap<>();
         myProfileMap.put(USER_NAME, () -> WebElementInteractor.setTxt(usernameTextBox, user.getUserName()));
         myProfileMap.put(NAME, () -> WebElementInteractor.setTxt(nameTextBox, user.getName()));

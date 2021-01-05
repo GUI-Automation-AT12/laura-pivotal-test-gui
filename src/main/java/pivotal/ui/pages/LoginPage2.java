@@ -1,5 +1,6 @@
 package pivotal.ui.pages;
 
+import core.utils.WebElementInteractor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,8 +25,7 @@ public class LoginPage2 extends BasePage {
      * @return the home page
      */
     public HomePage login(final String password) {
-        passwordTextBox.clear();
-        passwordTextBox.sendKeys(password);
+        WebElementInteractor.setTxt(passwordTextBox, password);
         loginBtn.click();
         return new HomePage();
     }

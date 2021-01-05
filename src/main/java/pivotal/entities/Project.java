@@ -1,6 +1,6 @@
 package pivotal.entities;
 
-import java.util.Date;
+import core.utils.IdGenerator;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
@@ -16,6 +16,7 @@ public class Project {
     private String account;
     private String projectPrivacy;
     private Set<String> projectKeys = new HashSet<String>();
+    private final static String ID = "UNIQUE_ID";
 
     /**
      * Gets project name.
@@ -32,8 +33,7 @@ public class Project {
      * @param projectNameToSet the project name
      */
     public void setProjectName(final String projectNameToSet) {
-        String id = Long.toString(new Date().getTime());
-        this.projectName = projectNameToSet.replaceAll("UNIQUE_ID", id);
+        this.projectName = projectNameToSet.replaceAll(ID, IdGenerator.getUniqueId());
         projectKeys.add(PROJECT_NAME);
     }
 

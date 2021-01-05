@@ -6,12 +6,6 @@ import pivotal.ui.forms.ProjectForm;
 
 public class HomePage extends BasePage {
 
-   /* @FindBy(xpath = "//button[@aria-label='Profile Dropdown']")
-    private WebElement profileDropDown;
-
-    @FindBy(css = "div:nth-child(1) > a.Dropdown__option.Dropdown__option--link:nth-child(3)")
-    private WebElement profileBtn;*/
-
     @FindBy(id = "create-project-button")
     private WebElement createProjectBtn;
 
@@ -19,16 +13,16 @@ public class HomePage extends BasePage {
     private WebElement signOutProfile;
 
     /**
-     * Instantiates a new Project page.
+     * Instantiates a new Home page.
      */
     public HomePage() {
         super();
     }
 
     /**
-     * Create project project page.
+     * Create project.
      *
-     * @return the project page
+     * @return the project form
      */
     public ProjectForm createProject() {
         createProjectBtn.click();

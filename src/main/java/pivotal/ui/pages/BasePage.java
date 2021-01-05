@@ -21,7 +21,7 @@ public abstract class BasePage {
      *
      * @return the web driver
      */
-    public WebDriver getWebDriver() {
+    /*public WebDriver getWebDriver() {
         return webDriver;
-    }
+    }*/
 }

@@ -41,32 +41,6 @@ public class ProjectForm extends BasePage {
         super();
     }
 
-    /**
-     * Create project.
-     *
-     * @param newProject the new project
-     */
-    public void createProject(final Map<String, String> newProject) {
-        final HashMap<String, Runnable> strategyMap = composeStrategyMap(newProject);
-        newProject.keySet().forEach(key -> {
-            strategyMap.get(key).run(); });
-    }
-
-
-    /**
-     * Compose strategy hash map.
-     *
-     * @param projectInformation the project information
-     * @return the hash map
-     */
-    public HashMap<String, Runnable> composeStrategyMap(final Map<String, String> projectInformation) {
-        final HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put(PROJECT_NAME, () -> setProjectName(projectInformation.get(PROJECT_NAME)));
-        strategyMap.put(ACCOUNT, () -> setAccount(projectInformation.get(ACCOUNT)));
-        strategyMap.put(PROJECT_PRIVACY, () -> setProjectPrivacy(projectInformation.get(PROJECT_PRIVACY)));
-        return strategyMap;
-    }
-
     private void setProjectName(final String projectName) {
         WebElementInteractor.setTxt(nameTextBox, projectName);
     }
@@ -91,5 +65,30 @@ public class ProjectForm extends BasePage {
      */
     public void clickCreateButton() {
         createBtn.click();
+    }
+
+    /**
+     * Create project.
+     *
+     * @param newProject the new project
+     */
+    public void createProject(final Map<String, String> newProject) {
+        final HashMap<String, Runnable> strategyMap = composeStrategyMap(newProject);
+        newProject.keySet().forEach(key -> {
+            strategyMap.get(key).run(); });
+    }
+
+    /**
+     * Compose strategy hash map.
+     *
+     * @param projectInformation the project information
+     * @return the hash map
+     */
+    public HashMap<String, Runnable> composeStrategyMap(final Map<String, String> projectInformation) {
+        final HashMap<String, Runnable> strategyMap = new HashMap<>();
+        strategyMap.put(PROJECT_NAME, () -> setProjectName(projectInformation.get(PROJECT_NAME)));
+        strategyMap.put(ACCOUNT, () -> setAccount(projectInformation.get(ACCOUNT)));
+        strategyMap.put(PROJECT_PRIVACY, () -> setProjectPrivacy(projectInformation.get(PROJECT_PRIVACY)));
+        return strategyMap;
     }
 }

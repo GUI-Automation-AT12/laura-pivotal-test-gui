@@ -3,6 +3,7 @@ package pivotal.ui.bares;
 import core.utils.WebElementInteractor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pivotal.ui.menus.UserMenu;
 import pivotal.ui.pages.BasePage;
 import pivotal.ui.pages.ProfilePage;
 
@@ -30,19 +31,6 @@ public class TopNavigationBar extends BasePage {
     @FindBy(css = "button[aria-label=\"Profile Dropdown\"]")
     private WebElement userMenuDropdown;
 
-    //User Menu Dropdown components
-    @FindBy(css = "div:nth-child(1) > a.Dropdown__option.Dropdown__option--link:nth-child(3)")
-    private WebElement profileBtn;
-
-    @FindBy(xpath = "//div[@class='AvatarDetails__name']")
-    private WebElement nameDetails;
-
-    @FindBy(xpath = "//div[@class='AvatarDetails__username']")
-    private WebElement usernameDetails;
-
-    @FindBy(xpath = "//div[@class='AvatarDetails__initials']")
-    private WebElement initialsDetails;
-
     /**
      * Instantiates a new Top navigation bar.
      */
@@ -60,21 +48,13 @@ public class TopNavigationBar extends BasePage {
     }
 
     /**
-     * Open user menu dropdown.
-     */
-    public void openUserMenuDropdown() {
-        userMenuDropdown.click();
-    }
-
-    /**
-     * Gets profile user.
+     * Open user menu dropdown user menu.
      *
-     * @return the profile user
+     * @return the user menu
      */
-    public ProfilePage getProfileUser() {
-        openUserMenuDropdown();
-        profileBtn.click();
-        return new ProfilePage();
+    public UserMenu openUserMenuDropdown() {
+        userMenuDropdown.click();
+        return new UserMenu();
     }
 
     /**
@@ -82,22 +62,7 @@ public class TopNavigationBar extends BasePage {
      *
      * @return the profile drop down
      */
-    public WebElement getUserMenuDropdown() {
+    /*public WebElement getUserMenuDropdown() {
         return userMenuDropdown;
-    }
-
-    /**
-     * Gets my profile map.
-     *
-     * @return the my profile map
-     */
-    public Map<String, String> getMyProfileMap() {
-      //  userMenuDropdown.click();
-        Map userInfoMap = new HashMap<String, String>();
-        HashMap<String, Supplier<String>> myProfileMap = new HashMap<>();
-        userInfoMap.put("Name Details", WebElementInteractor.getTxt(nameDetails));
-        userInfoMap.put("User Name Details", WebElementInteractor.getTxt(usernameDetails).substring(1));
-        userInfoMap.put("Initials Details", WebElementInteractor.getTxt(initialsDetails));
-        return userInfoMap;
-    }
+    }*/
 }
