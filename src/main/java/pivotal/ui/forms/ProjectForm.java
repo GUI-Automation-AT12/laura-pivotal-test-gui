@@ -34,6 +34,10 @@ public class ProjectForm extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement createBtn;
 
+    private static final String UNTITLED_ACCOUNT = "Untitled";
+    private static final String PRIVATE_OPTION = "Private";
+    private static final String PUBLIC_OPTION = "Public";
+
     /**
      * Instantiates a new Project form.
      */
@@ -45,18 +49,18 @@ public class ProjectForm extends BasePage {
         WebElementInteractor.setTxt(nameTextBox, projectName);
     }
 
-    private void setAccount(final String account) {
-        selectAccountDropDown.click();
-        if ("Untitled".equals(account)) {
-            myAccountOption.click();
+    public void setAccount(final String account) {
+        WebElementInteractor.click(selectAccountDropDown);
+        if (UNTITLED_ACCOUNT.equals(account)) {
+            WebElementInteractor.click(myAccountOption);
         }
     }
 
-    private void setProjectPrivacy(final String projectPrivacy) {
-        if ("Private".equals(projectPrivacy)) {
-            privateOption.click();
-        } else if ("Public".equals(projectPrivacy)) {
-            publicOption.click();
+    public void setProjectPrivacy(final String projectPrivacy) {
+        if (PRIVATE_OPTION.equals(projectPrivacy)) {
+            WebElementInteractor.click(privateOption);
+        } else if (PUBLIC_OPTION.equals(projectPrivacy)) {
+            WebElementInteractor.click(publicOption);
         }
     }
 
@@ -64,7 +68,7 @@ public class ProjectForm extends BasePage {
      * Click create button.
      */
     public void clickCreateButton() {
-        createBtn.click();
+        WebElementInteractor.click(createBtn);
     }
 
     /**

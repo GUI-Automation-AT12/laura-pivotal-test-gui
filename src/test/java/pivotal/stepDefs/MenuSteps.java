@@ -2,7 +2,6 @@ package pivotal.stepDefs;
 
 import io.cucumber.java.en.When;
 import pivotal.ui.bares.TopNavigationBar;
-import pivotal.ui.pages.HomePage;
 
 public class MenuSteps {
 
@@ -12,15 +11,6 @@ public class MenuSteps {
      * Instantiates a new Action steps.
      */
     public MenuSteps() {
-    }
-
-    /**
-     * Open the create project dialog in projects tab.
-     */
-    @When("I open the create project dialog in projects tab")
-    public void openTheCreateProjectDialogInProjectsTab() {
-        HomePage homePage = new HomePage();
-        homePage.createProject();
     }
 
     /**

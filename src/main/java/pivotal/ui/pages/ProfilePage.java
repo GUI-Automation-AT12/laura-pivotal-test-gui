@@ -15,6 +15,7 @@ import static pivotal.constants.UserIdentifiers.USER_NAME;
 import static pivotal.constants.UserIdentifiers.INITIALS;
 
 public class ProfilePage extends BasePage {
+
     @FindBy(id = "person_username")
     private WebElement usernameTextBox;
 
@@ -52,7 +53,7 @@ public class ProfilePage extends BasePage {
     private WebElement changesNotification;
 
     @FindBy(css = ".name")
-    private WebElement userMMTitle;
+    private WebElement userManagementMenuTitle;
 
     /**
      * Instantiates a new Profile page.
@@ -65,21 +66,6 @@ public class ProfilePage extends BasePage {
         HashMap<String, Runnable> strategyMap = composeStrategySetterMap(formFields, user);
         formFields.forEach(key -> strategyMap.get(key).run());
     }
-
-//    /**
-//     * Edit profile.
-//     *
-//     * @param username the username
-//     * @param name     the name
-//     * @param initials the initials
-//     */
-//    public void editProfile(final String username, final String name, final String initials) {
-//        editBtn.click();
-//        WebElementInteractor.setTxt(usernameTextBox, username);
-//        WebElementInteractor.setTxt(nameTextBox, name);
-//        WebElementInteractor.setTxt(initialsTextBox, initials);
-//        saveBtn.click();
-//    }
 
     /**
      * Compose my profile map hash map.
@@ -142,8 +128,8 @@ public class ProfilePage extends BasePage {
      *
      * @return the user mm title
      */
-    public String getUserMMTitle() {
-        return WebElementInteractor.getTxt(userMMTitle).toUpperCase();
+    public String getUserManagementMenuTitle() {
+        return WebElementInteractor.getTxt(userManagementMenuTitle).toUpperCase();
     }
 }
 

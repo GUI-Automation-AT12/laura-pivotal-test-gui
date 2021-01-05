@@ -1,15 +1,8 @@
 package pivotal.ui.menus;
 
-import core.utils.WebElementInteractor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pivotal.ui.pages.ProfilePage;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
-import static pivotal.constants.UserIdentifiers.*;
 
 public class UserMenu {
 

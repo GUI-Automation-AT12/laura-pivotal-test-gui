@@ -1,5 +1,6 @@
 package pivotal.ui.pages;
 
+import core.utils.WebElementInteractor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pivotal.ui.forms.ProjectForm;
@@ -25,7 +26,7 @@ public class HomePage extends BasePage {
      * @return the project form
      */
     public ProjectForm createProject() {
-        createProjectBtn.click();
+        WebElementInteractor.click(createProjectBtn);
         return new ProjectForm();
     }
 }

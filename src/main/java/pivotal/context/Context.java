@@ -10,6 +10,8 @@ import java.util.Map;
 public class Context {
 
     private Map<String, User> users;
+
+    // private Map<String, Project> projects;
     private Project project;
     private String userEdited;
     private final String USER_EDITED = "User after changes";
@@ -19,24 +21,6 @@ public class Context {
      * Instantiates a new Context.
      */
     public Context() {
-    }
-
-    /**
-     * Gets project.
-     *
-     * @return the project
-     */
-    public Project getProject() {
-        return project;
-    }
-
-    /**
-     * Sets project.
-     *
-     * @param projectToSet the project to set
-     */
-    public void setProject(final Project projectToSet) {
-        this.project = projectToSet;
     }
 
     public void saveNewUser(final User user) {
@@ -71,5 +55,13 @@ public class Context {
 
     public User getNewUser() {
         return users.get(USER_EDITED);
+    }
+
+    public void setProject(final Project project) {
+        this.project = project;
+    }
+
+    public Project getProject() {
+        return project;
     }
 }

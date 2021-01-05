@@ -29,15 +29,6 @@ public final class Runner extends AbstractTestNGCucumberTests {
         System.setProperty("dataproviderthreadcount", Environment.getInstance().getProperties().get("cucumberThreadCount"));
     }
 
-  /*  @AfterTest
-    public void tearDown(Scenario scenario) {
-        if (scenario.isFailed()) {
-            // Take a screenshot...
-            final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
-        }
-    }*/
-
     /**
      * Tear down.
      */

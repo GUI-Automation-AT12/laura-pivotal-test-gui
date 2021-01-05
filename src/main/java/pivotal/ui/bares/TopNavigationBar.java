@@ -1,25 +1,26 @@
 package pivotal.ui.bares;
 
+import core.selenium.WebDriverManager;
 import core.utils.WebElementInteractor;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pivotal.config.Environment;
 import pivotal.ui.menus.UserMenu;
 import pivotal.ui.pages.BasePage;
-import pivotal.ui.pages.ProfilePage;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
 
 public class TopNavigationBar extends BasePage {
 
     @FindBy(css = "div.tc_tracker_header a[aria-label=\"Dashboard\"] > img[alt=\"tracker logo\"]")
     private WebElement dashboardBtn;
 
-    @FindBy(css = "div.tc_tracker_header ul:nth-child(1) li:nth-child(2) div > button[aria-label=\"Pivotal Tracker - all projects/workspaces\"]")
+    @FindBy(css = "button[aria-label='Pivotal Tracker - all projects/workspaces']")
     private WebElement projectWorkspaceDropdown;
 
-    @FindBy(css = "header[data-aid=\"PageHeader\"] ul:first-child li:nth-child(6) div > button[aria-label=\"0 unread notifications\"]")
+    @FindBy(css = "header[data-aid='PageHeader'] ul:first-child li:nth-child(6) div > button[aria-label=\"0 unread notifications\"]")
     private WebElement notificationsBtn;
 
     @FindBy(css = "header[data-aid=\"PageHeader\"] ul:first-child li:nth-child(5) div > button[type=\"button\"]")
@@ -53,16 +54,17 @@ public class TopNavigationBar extends BasePage {
      * @return the user menu
      */
     public UserMenu openUserMenuDropdown() {
-        userMenuDropdown.click();
+        WebElementInteractor.click(userMenuDropdown);
         return new UserMenu();
     }
 
     /**
-     * Gets profile drop down.
+     * Gets text from project workspace dropdown.
      *
-     * @return the profile drop down
+     * @return the text from project workspace dropdown
      */
-    /*public WebElement getUserMenuDropdown() {
-        return userMenuDropdown;
-    }*/
+    public String getTextFromProjectWorkspaceDropdown() {
+        WebElementInteractor.wait(By.cssSelector("span.raw_context_name"));
+        return WebElementInteractor.getTxt(projectWorkspaceDropdown);
+    }
 }

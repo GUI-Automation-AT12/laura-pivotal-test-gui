@@ -1,5 +1,6 @@
 package pivotal.stepDefs;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -10,23 +11,34 @@ import pivotal.ui.pages.ProfilePage;
 
 import java.util.Map;
 
-public class VerificationSteps {
+public class ProfileSteps {
 
     private Context context;
     private ProfilePage profilePage = new ProfilePage();;
     private TopNavigationBar topNavigationBar = new TopNavigationBar();
-    private User user;
 
     /**
      * Instantiates a new Profile steps.
      *
      * @param contextToSet the context to set
      */
-    public VerificationSteps(final Context contextToSet) {
+    public ProfileSteps(final Context contextToSet) {
         this.context = contextToSet;
-      //  this.user = context.getUser();
     }
 
+    /**
+     * Edit my profile with the following information.
+     *
+     * @param data the data
+     */
+    @And("^I edit My Profile with the following information$")
+    public void editMyProfileWithTheFollowingInformation(final Map<String, String> data) {
+        context.saveActualUser();
+        User user = new User();
+        user.processInformation(data);
+        context.saveNewUser(user);
+        profilePage.editProfile(data.keySet(), user);
+    }
     /**
      * Verify user name is updated.
      */
@@ -68,7 +80,7 @@ public class VerificationSteps {
      */
     @Then("my Name should be updated in the User Management Menu")
     public void verifyNameIsUpdatedInTheUserManagementMenu() {
-        String managementMenuTitle = profilePage.getUserMMTitle();
+        String managementMenuTitle = profilePage.getUserManagementMenuTitle();
      //   Assert.assertEquals(managementMenuTitle, user.getName());
     }
 
