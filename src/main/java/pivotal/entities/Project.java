@@ -17,7 +17,7 @@ public class Project {
     private String account;
     private String projectPrivacy;
     private Set<String> updatedFields = new HashSet<String>();
-    private final static String ID = "UNIQUE_ID";
+    private static final String ID = "UNIQUE_ID";
 
     /**
      * Gets project name.

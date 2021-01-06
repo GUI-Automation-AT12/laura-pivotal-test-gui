@@ -11,10 +11,18 @@ import java.util.Set;
 public class UserHooks {
     private final Context context;
 
+    /**
+     * Instantiates a new User hooks.
+     *
+     * @param contextToSet the context to set
+     */
     public UserHooks(final Context contextToSet) {
         context = contextToSet;
     }
 
+    /**
+     * Reset user information.
+     */
     @After(value = "@resetUserInformation")
     public void resetUserInformation() {
         PageTransporter.navigateToPage("PROFILE_PAGE");

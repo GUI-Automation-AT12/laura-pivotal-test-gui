@@ -33,6 +33,11 @@ public class HomePage extends BasePage {
         return new ProjectForm();
     }
 
+    /**
+     * Open default project page.
+     *
+     * @return the project page
+     */
     public ProjectPage openDefaultProject() {
         WebElementInteractor.click(defaultProjectTitleHeader);
         return new ProjectPage();

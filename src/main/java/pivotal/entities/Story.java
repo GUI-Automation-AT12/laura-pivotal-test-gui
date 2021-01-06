@@ -17,10 +17,10 @@ public class Story {
     /**
      * Sets name.
      *
-     * @param name the name
+     * @param nameToSet the name
      */
-    public void setName(final String name) {
-        this.name = name;
+    public void setName(final String nameToSet) {
+        this.name = nameToSet;
     }
 
     /**
@@ -35,9 +35,9 @@ public class Story {
     /**
      * Sets id.
      *
-     * @param id the id
+     * @param idToSet the id
      */
-    public void setId(final String id) {
-        this.id = id;
+    public void setId(final String idToSet) {
+        this.id = idToSet;
     }
 }

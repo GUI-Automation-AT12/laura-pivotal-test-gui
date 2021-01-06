@@ -11,12 +11,10 @@ import java.util.Map;
 public class Context {
 
     private Map<String, User> users;
-    private Map<String, String> data;
     private Project project;
     private Story story;
     private String userEdited;
-    private final String USER_EDITED = "User after changes";
-
+    private static final String USER_EDITED = "User after changes";
 
     /**
      * Instantiates a new Context.
@@ -24,10 +22,18 @@ public class Context {
     public Context() {
     }
 
+    /**
+     * Save new user.
+     *
+     * @param user the user
+     */
     public void saveNewUser(final User user) {
         this.users.put(USER_EDITED, user);
     }
 
+    /**
+     * Save actual user.
+     */
     public void saveActualUser() {
         User user = new User();
         this.users = new HashMap<String, User>();
@@ -38,48 +44,85 @@ public class Context {
         this.users.put(userEdited, user);
     }
 
+    /**
+     * Gets user by alias.
+     *
+     * @param user the user
+     * @return the user by alias
+     */
     public User getUserByAlias(final String user) {
         return users.get(user);
     }
 
-    public void setUsers(final Map<String, User> users) {
-        this.users = users;
+    /**
+     * Sets users.
+     *
+     * @param usersToSet the users to set
+     */
+    public void setUsers(final Map<String, User> usersToSet) {
+        this.users = usersToSet;
     }
 
-    public void setUserEdited(final String userEdited) {
-        this.userEdited = userEdited;
+    /**
+     * Sets user edited.
+     *
+     * @param userEditedToSet the user edited to set
+     */
+    public void setUserEdited(final String userEditedToSet) {
+        this.userEdited = userEditedToSet;
     }
 
+    /**
+     * Gets user edited.
+     *
+     * @return the user edited
+     */
     public String getUserEdited() {
         return userEdited;
     }
 
+    /**
+     * Gets new user.
+     *
+     * @return the new user
+     */
     public User getNewUser() {
         return users.get(USER_EDITED);
     }
 
-    public void setProject(final Project project) {
-        this.project = project;
+    /**
+     * Sets project.
+     *
+     * @param projectToSet the project to set
+     */
+    public void setProject(final Project projectToSet) {
+        this.project = projectToSet;
     }
 
+    /**
+     * Gets project.
+     *
+     * @return the project
+     */
     public Project getProject() {
         return project;
     }
 
-    public Map<String, String> getData() {
-        return data;
+    /**
+     * Sets story.
+     *
+     * @param storyToSet the story to set
+     */
+    public void setStory(final Story storyToSet) {
+        this.story = storyToSet;
     }
 
+    /**
+     * Gets story.
+     *
+     * @return the story
+     */
     public Story getStory() {
         return story;
-    }
-
-    public void setStory(final Story story) {
-        this.story = story;
-    }
-
-    public void saveData(final String key, final String value) {
-        data = new HashMap<>();
-        data.put(key, value);
     }
 }

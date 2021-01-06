@@ -15,13 +15,4 @@ public abstract class BasePage {
         this.webDriver = WebDriverManager.getInstance().getWebDriver();
         PageFactory.initElements(this.webDriver, this);
     }
-
-    /**
-     * Gets web driver.
-     *
-     * @return the web driver
-     */
-    /*public WebDriver getWebDriver() {
-        return webDriver;
-    }*/
 }

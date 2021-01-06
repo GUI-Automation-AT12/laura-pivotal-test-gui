@@ -51,12 +51,20 @@ public class CreateProjectSteps {
         projectForm.clickCreateButton();
     }
 
+    /**
+     * Verify user is redirected to the created project dashboard.
+     */
     @Then("the user should be redirected to the created project dashboard")
     public void verifyUserIsRedirectedToTheCreatedProjectDashboard() {
         ProjectPage projectPage = new ProjectPage();
         Assert.assertTrue(projectPage.isPanelBacklogVisible());
     }
 
+    /**
+     * Verify name of created project is visible in the header of the page.
+     *
+     * @throws InterruptedException the interrupted exception
+     */
     @And("the name of created project should be visible in the header of the page")
     public void verifyNameOfCreatedProjectIsVisibleInTheHeaderOfThePage() throws InterruptedException {
         TopNavigationBar topNavigationBar = new TopNavigationBar();

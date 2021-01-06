@@ -1,7 +1,6 @@
 package core.selenium;
 
 import pivotal.config.Environment;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public final class WebDriverConfig {
 

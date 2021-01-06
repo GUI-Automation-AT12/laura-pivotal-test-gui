@@ -59,10 +59,13 @@ public class StoryHooks {
         context.setStory(defaultStory);
     }
 
+    /**
+     * Restore default story position.
+     */
     @After(value = "@restoreDefaultStoryPosition")
     public void restoreDefaultStoryPosition() {
         WebDriverManager.getInstance().getWebDriver().get(PROJECT_URL);
-        ProjectPage projectPage= new ProjectPage();
+        ProjectPage projectPage = new ProjectPage();
         projectPage.moveStoryFromIceboxToBacklogPanel();
     }
 }

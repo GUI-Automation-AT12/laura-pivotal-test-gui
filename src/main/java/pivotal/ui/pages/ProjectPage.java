@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pivotal.ui.components.StoryComponent;
 
-public class ProjectPage extends BasePage{
+public class ProjectPage extends BasePage {
 
     @FindBy(css = ".backlog div[aria-label='default story']")
     private WebElement defaultStoryItemInBacklog;
@@ -21,9 +21,9 @@ public class ProjectPage extends BasePage{
     private WebElement backlogPanel;
 
     //Dashboard locator
-    private final static String DASHBOARD_ID = "tracker";
+    private static final String DASHBOARD_ID = "tracker";
     //Backlog locator
-    private final static String BACKLOG_CSS = "div[data-type='backlog']";
+    private static final String BACKLOG_CSS = "div[data-type='backlog']";
 
     private void waitDashboard() {
         WebElementInteractor.wait(By.id(DASHBOARD_ID));

@@ -6,15 +6,15 @@ import core.utils.JsonDataReader;
 
 public class JsonDataReaderTest {
     private String filePath = "users.json";
-    private String key = "Name";
-    private String identifier = "user";
+    private String key = "name";
+    private String identifier = "Editable User";
 
     /**
      * Test json read name.
      */
     @Test
     public void testJsonReadName() {
-      String expected = "Auto";
+      String expected = "testauto2020";
       String actual = new JsonDataReader(filePath).getValueData(identifier, key);
       Assert.assertEquals(actual, expected);
     }

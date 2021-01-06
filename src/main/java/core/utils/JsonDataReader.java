@@ -3,7 +3,7 @@ package core.utils;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,7 +13,7 @@ import pivotal.config.Environment;
 
 public class JsonDataReader {
 
-    private static final String USERS_PATH= "usersPath";
+    private static final String USERS_PATH = "usersPath";
     private HashMap mapData;
     private JSONObject jsonObject;
 
@@ -22,7 +22,7 @@ public class JsonDataReader {
      *
      * @param filePath the file path
      */
-    public JsonDataReader(String filePath) {
+    public JsonDataReader(final String filePath) {
         this.jsonObject = convert(jsonReader(filePath));
     }
 
@@ -37,7 +37,8 @@ public class JsonDataReader {
         }
         return object;
     }
-    private JSONObject convert(Object object) {
+
+    private JSONObject convert(final Object object) {
         if (object instanceof JSONArray) {
             JSONArray jsonArray = (JSONArray) object;
             jsonObject = (JSONObject) jsonArray.get(0);
@@ -49,7 +50,7 @@ public class JsonDataReader {
 
     private void toMap(final String identifier) {
         mapData = new HashMap<String, String>();
-        mapData = (HashMap)(jsonObject.get(identifier));
+        mapData = (HashMap) (jsonObject.get(identifier));
     }
 
     /**

@@ -49,6 +49,11 @@ public class ProjectForm extends BasePage {
         WebElementInteractor.setTxt(nameTextBox, projectName);
     }
 
+    /**
+     * Sets account.
+     *
+     * @param account the account
+     */
     public void setAccount(final String account) {
         WebElementInteractor.click(selectAccountDropDown);
         if (UNTITLED_ACCOUNT.equals(account)) {
@@ -56,6 +61,11 @@ public class ProjectForm extends BasePage {
         }
     }
 
+    /**
+     * Sets project privacy.
+     *
+     * @param projectPrivacy the project privacy
+     */
     public void setProjectPrivacy(final String projectPrivacy) {
         if (PRIVATE_OPTION.equals(projectPrivacy)) {
             WebElementInteractor.click(privateOption);

@@ -1,12 +1,13 @@
 package unitui;
 
 import core.selenium.WebDriverManager;
+import core.utils.JsonDataReader;
+import core.utils.WebElementInteractor;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.AfterTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import pivotal.config.Environment;
 import pivotal.ui.bares.TopNavigationBar;
 import pivotal.ui.pages.HomePage;
 import pivotal.ui.pages.InitialPage;
@@ -14,13 +15,8 @@ import pivotal.ui.pages.LoginPage;
 import pivotal.ui.pages.LoginPage2;
 
 public class LoginTest {
-    private InitialPage initialPage;
-    private LoginPage loginPage;
-    private HomePage homePage;
-    private TopNavigationBar topNavigationBar;
-    private String email = Environment.getInstance().getProperties().get("email");
-    private String password = Environment.getInstance().getProperties().get("password");
 
+    private static final String EDITABLE_USER = "Editable User";
     /**
      * Tear down.
      */
@@ -34,12 +30,17 @@ public class LoginTest {
      */
     @Test
     public void login() {
-        initialPage = new InitialPage();
-        loginPage = initialPage.login();
+        JsonDataReader jsonDataReader = new JsonDataReader("users.json");
+        String email = jsonDataReader.getValueData(EDITABLE_USER, "email");
+        String password = jsonDataReader.getValueData(EDITABLE_USER, "password");
+        InitialPage initialPage = new InitialPage();
+        LoginPage loginPage = initialPage.login();
         LoginPage2 loginPage2 = loginPage.login(email);
-        homePage = loginPage2.login(password);
-      /*  WebElement actual = topNavigationBar.getUserMenuDropdown();
-        WebElement expected = WebDriverManager.getInstance().getWebDriver().findElement(By.xpath("//button[contains(text(),'testauto2020')]"));
-        Assert.assertEquals(actual, expected);*/
+        HomePage homePage = loginPage2.login(password);
+        TopNavigationBar topNavigationBar = new TopNavigationBar();
+        String actual = topNavigationBar.getTextFromUserMenu();
+        WebDriver webDriver = WebDriverManager.getInstance().getWebDriver();
+        String expected = WebElementInteractor.getTxt(webDriver.findElement(By.xpath("//button[contains(text(),'testauto2020')]")));
+        Assert.assertEquals(actual, expected);
     }
 }

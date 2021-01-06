@@ -3,7 +3,6 @@ package pivotal.ui.pages;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pivotal.config.Environment;
 
 public class InitialPage extends BasePage {
 

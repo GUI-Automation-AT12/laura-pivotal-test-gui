@@ -18,11 +18,6 @@ public final class PageTransporter {
         webDriver = WebDriverManager.getInstance().getWebDriver();
     }
 
-    /**
-     * Navigates to a page sending the url.
-     *
-     * @param url for navigate.
-     */
     private static void goToURL(final String url) {
         try {
             webDriver.navigate().to(new URL(url));

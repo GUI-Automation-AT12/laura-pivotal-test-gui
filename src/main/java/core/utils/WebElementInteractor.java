@@ -13,7 +13,7 @@ import java.util.List;
 
 public final class WebElementInteractor {
 
-    private final static String VALUE = "value";
+    private static final String VALUE = "value";
     /**
      * Constructor private.
      */
