@@ -11,6 +11,7 @@ public final class Permalink {
         endpointsMap.put("LOGIN_PAGE2", "signin/show_with_password");
         endpointsMap.put("DASHBOARD_PAGE", "dashboard");
         endpointsMap.put("PROFILE_PAGE", "profile");
+        endpointsMap.put("PROJECT_PAGE", "n/projects");
     }
 
     private Permalink() { }

@@ -13,6 +13,9 @@ public class HomePage extends BasePage {
     @FindBy(css = "button.Dropdown__option.Dropdown__option--button:nth-child(3)")
     private WebElement signOutProfile;
 
+    @FindBy(css = "a[data-aid='project-name']")
+    private WebElement defaultProjectTitleHeader;
+
     /**
      * Instantiates a new Home page.
      */
@@ -28,5 +31,10 @@ public class HomePage extends BasePage {
     public ProjectForm createProject() {
         WebElementInteractor.click(createProjectBtn);
         return new ProjectForm();
+    }
+
+    public ProjectPage openDefaultProject() {
+        WebElementInteractor.click(defaultProjectTitleHeader);
+        return new ProjectPage();
     }
 }

@@ -2,6 +2,7 @@ package pivotal.context;
 
 import core.utils.JsonDataReader;
 import pivotal.entities.Project;
+import pivotal.entities.Story;
 import pivotal.entities.User;
 
 import java.util.HashMap;
@@ -10,9 +11,9 @@ import java.util.Map;
 public class Context {
 
     private Map<String, User> users;
-
-    // private Map<String, Project> projects;
+    private Map<String, String> data;
     private Project project;
+    private Story story;
     private String userEdited;
     private final String USER_EDITED = "User after changes";
 
@@ -63,5 +64,22 @@ public class Context {
 
     public Project getProject() {
         return project;
+    }
+
+    public Map<String, String> getData() {
+        return data;
+    }
+
+    public Story getStory() {
+        return story;
+    }
+
+    public void setStory(final Story story) {
+        this.story = story;
+    }
+
+    public void saveData(final String key, final String value) {
+        data = new HashMap<>();
+        data.put(key, value);
     }
 }

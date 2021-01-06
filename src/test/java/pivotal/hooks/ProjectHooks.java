@@ -16,10 +16,26 @@ public class ProjectHooks {
     /**
      * Instantiates a new Project hooks.
      *
-    // * @param contextToSet the context to set
+     * @param contextToSet the context to set
      */
     public ProjectHooks(final Context contextToSet) {
         this.context = contextToSet;
+    }
+
+    private String getId(final String projectName) {
+        String projectId = "";
+        RequestManager.setRequestSpec(AuthenticationUtils.getLoggedReqSpec());
+        String endpoint = BASE_URL_API + "/me";
+        Response response = RequestManager.get(endpoint);
+       // List projectList = new ArrayList<HashMap>();
+        List projectList;
+        projectList = response.jsonPath().getJsonObject("projects");
+        for (int i = 0; i < projectList.size(); i++) {
+            if (projectName.equals(((LinkedHashMap) projectList.get(i)).get("project_name"))) {
+                projectId = ((LinkedHashMap) projectList.get(i)).get("project_id").toString();
+            }
+        }
+        return projectId;
     }
 
     /**
@@ -31,20 +47,5 @@ public class ProjectHooks {
         String projectId =  getId(projectName);
         String endpoint = BASE_URL_API + "/projects/" + projectId;
         RequestManager.delete(endpoint);
-    }
-
-    private String getId(final String projectName) {
-        String projectId = null;
-        RequestManager.setRequestSpec(AuthenticationUtils.getLoggedReqSpec());
-        String endpoint = BASE_URL_API + "/me";
-        Response response = RequestManager.get(endpoint);
-        List projectList = new ArrayList<HashMap>();
-        projectList = response.jsonPath().getJsonObject("projects");
-        for (int i = 0; i < projectList.size(); i++) {
-            if (projectName.equals(((LinkedHashMap) projectList.get(i)).get("project_name"))) {
-                return ((LinkedHashMap) projectList.get(i)).get("project_id").toString();
-            }
-        }
-        return projectId;
     }
 }

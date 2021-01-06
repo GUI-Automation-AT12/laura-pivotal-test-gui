@@ -4,12 +4,16 @@ import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pivotal.config.Environment;
 
+import java.util.List;
+
 public final class WebElementInteractor {
 
+    private final static String VALUE = "value";
     /**
      * Constructor private.
      */
@@ -62,8 +66,48 @@ public final class WebElementInteractor {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public static boolean findElement(final By by) {
+    /**
+     * Evaluate if element is in the page.
+     *
+     * @param by the by
+     * @return true if element is present, false otherwise
+     */
+    public static boolean isElement(final By by) {
         WebDriver webDriver = WebDriverManager.getInstance().getWebDriver();
         return webDriver.findElements(by).size() > 0;
+    }
+
+    /**
+     * Find webElements in the page.
+     *
+     * @param by the by
+     * @return the list of webElements
+     */
+    public static List<WebElement> findElements(final By by)  {
+        WebDriver webDriver = WebDriverManager.getInstance().getWebDriver();
+        return webDriver.findElements(by);
+    }
+
+    /**
+     * Drag and drop a webElement.
+     *
+     * @param elementToMove the element to move
+     * @param finalPosition the final position
+     */
+    public static void dragAndDrop(final WebElement elementToMove, final WebElement finalPosition) {
+        WebDriver webDriver = WebDriverManager.getInstance().getWebDriver();
+        Actions builder = new Actions(webDriver);
+        builder.moveToElement(elementToMove).clickAndHold().perform();
+        builder.moveToElement(finalPosition).release().perform();
+    }
+
+    /**
+     * Gets attribute value.
+     *
+     * @param webElement the web element
+     * @return the attribute value
+     */
+    public static String getAttributeValue(final WebElement webElement) {
+        return webElement.getAttribute(VALUE);
     }
 }
