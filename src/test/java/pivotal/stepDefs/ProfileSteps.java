@@ -7,14 +7,19 @@ import org.testng.asserts.SoftAssert;
 import pivotal.context.Context;
 import pivotal.entities.User;
 import pivotal.ui.bares.TopNavigationBar;
+import pivotal.ui.menus.UserMenu;
 import pivotal.ui.pages.ProfilePage;
 
 import java.util.Map;
 
+import static pivotal.constants.UserIdentifiers.NAME;
+import static pivotal.constants.UserIdentifiers.USER_NAME;
+import static pivotal.constants.UserIdentifiers.INITIALS;
+
 public class ProfileSteps {
 
     private Context context;
-    private ProfilePage profilePage = new ProfilePage();;
+    private ProfilePage profilePage = new ProfilePage();
     private TopNavigationBar topNavigationBar = new TopNavigationBar();
 
     /**
@@ -39,16 +44,6 @@ public class ProfileSteps {
         context.saveNewUser(user);
         profilePage.editProfile(data.keySet(), user);
     }
-    /**
-     * Verify user name is updated.
-     */
-    @Then("my User Name should be updated in the Top Menu")
-    public void verifyUserNameIsUpdatedInTheTopMenu() {
-        String userNameFromTopMenu = topNavigationBar.getTextFromUserMenu();
-        User user = context.getNewUser();
-        String actualValue = user.getUserName().toUpperCase();
-  //      Assert.assertEquals(actualValue, userNameFromTopMenu);
-    }
 
     /**
      * Verify message is displayed in my profile section.
@@ -64,7 +59,7 @@ public class ProfileSteps {
     /**
      * Verify user information is updated in my profile section.
      */
-    @Then("the user information should be updated in My Profile section")
+    @And("the user information should be updated in My Profile section")
     public void verifyUserInformationIsUpdatedInMyProfileSection() {
         SoftAssert softAssert = new SoftAssert();
         Map<String, String> actualProfileInfo = profilePage.getMyProfileMap();
@@ -81,7 +76,19 @@ public class ProfileSteps {
     @Then("my Name should be updated in the User Management Menu")
     public void verifyNameIsUpdatedInTheUserManagementMenu() {
         String managementMenuTitle = profilePage.getUserManagementMenuTitle();
-     //   Assert.assertEquals(managementMenuTitle, user.getName());
+        String expectedValue = context.getNewUser().getName().toUpperCase();
+        Assert.assertEquals(managementMenuTitle, expectedValue);
+    }
+
+    /**
+     * Verify user name is updated.
+     */
+    @And("my User Name should be updated in the Top Menu")
+    public void verifyUserNameIsUpdatedInTheTopMenu() {
+        String userNameFromTopMenu = topNavigationBar.getTextFromUserMenu();
+        User user = context.getNewUser();
+        String expectedValue = user.getUserName().toUpperCase();
+        Assert.assertEquals(userNameFromTopMenu, expectedValue);
     }
 
     /**
@@ -90,10 +97,12 @@ public class ProfileSteps {
     @Then("the user information should be updated in the User Dropdown Menu")
     public void verifyUserInformationIsUpdatedInTheUserDropdownMenu() {
         SoftAssert softAssert = new SoftAssert();
-   /*     Map<String, String> dropdownMenuInfo = topNavigationBar.getMyProfileMap();
-        softAssert.assertEquals(dropdownMenuInfo.get("Name Details"), user.getName());
-        softAssert.assertEquals(dropdownMenuInfo.get("User Name Details"), user.getUserName());
-        softAssert.assertEquals(dropdownMenuInfo.get("Initials Details"), user.getInitials());
-        softAssert.assertAll();*/
+        UserMenu userMenu = new UserMenu();
+        User user = context.getNewUser();
+        Map<String, String> dropdownMenuInfo = userMenu.getMyProfileMap();
+        softAssert.assertEquals(dropdownMenuInfo.get(NAME), user.getName());
+        softAssert.assertEquals(dropdownMenuInfo.get(USER_NAME), user.getUserName());
+        softAssert.assertEquals(dropdownMenuInfo.get(INITIALS), user.getInitials());
+        softAssert.assertAll();
     }
 }

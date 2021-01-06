@@ -1,7 +1,6 @@
 package pivotal.entities;
 
 import core.utils.IdGenerator;
-import core.utils.JsonDataReader;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -25,7 +24,7 @@ public class User {
     private String timeZone;
     private String defaultStoryType;
     private Set<String> updatedFields = new HashSet<String>();
-    private final static String ID = "UNIQUE_ID";
+    private static final String ID = "UNIQUE_ID";
 
     /**
      * Gets user name.

@@ -11,7 +11,8 @@ Feature: Edit User Profile
         | Initials  | UU                       |
     Then "Changed saved" message should be displayed in My Profile section
       And the user information should be updated in My Profile section
-      And my Name should be updated in the User Management Menu
+    When I reload the website
+    Then my Name should be updated in the User Management Menu
       And my User Name should be updated in the Top Menu
     When I open the User Dropdown Menu from Top Menu
-      And the user information should be updated in the User Dropdown Menu
+    Then the user information should be updated in the User Dropdown Menu
