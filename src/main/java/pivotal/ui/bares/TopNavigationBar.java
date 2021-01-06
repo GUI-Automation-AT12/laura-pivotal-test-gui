@@ -9,22 +9,13 @@ import pivotal.ui.pages.BasePage;
 
 public class TopNavigationBar extends BasePage {
 
-    @FindBy(css = "div.tc_tracker_header a[aria-label=\"Dashboard\"] > img[alt=\"tracker logo\"]")
+    @FindBy(css = "div.tc_tracker_header a[aria-label='Dashboard'] > img[alt='tracker logo']")
     private WebElement dashboardBtn;
 
     @FindBy(css = "button[aria-label='Pivotal Tracker - all projects/workspaces']")
     private WebElement projectWorkspaceDropdown;
 
-    @FindBy(css = "header[data-aid='PageHeader'] ul:first-child li:nth-child(6) div > button[aria-label=\"0 unread notifications\"]")
-    private WebElement notificationsBtn;
-
-    @FindBy(css = "header[data-aid=\"PageHeader\"] ul:first-child li:nth-child(5) div > button[type=\"button\"]")
-    private WebElement whatsNewDropdown;
-
-    @FindBy(css = "header[data-aid=\"PageHeader\"] ul:first-child li:nth-child(4) div > button[type=\"button\"]")
-    private WebElement helpMenuDropdown;
-
-    @FindBy(css = "button[aria-label=\"Profile Dropdown\"]")
+    @FindBy(css = "button[aria-label='Profile Dropdown']")
     private WebElement userMenuDropdown;
 
     /**

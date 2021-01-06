@@ -6,6 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Firefox implements IDriver {
 
+    private static final String FIREFOX_VERSION = "84.0.1";
+
     /**
      * Initializes Firefox driver.
      *
