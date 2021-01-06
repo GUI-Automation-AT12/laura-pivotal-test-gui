@@ -1,10 +1,13 @@
 package pivotal.hooks;
 
 import core.client.RequestManager;
+import core.selenium.WebDriverManager;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
 import pivotal.context.Context;
 import pivotal.entities.Story;
+import pivotal.ui.pages.ProjectPage;
 import pivotal.utils.AuthenticationUtils;
 
 import java.util.LinkedHashMap;
@@ -17,6 +20,8 @@ public class StoryHooks {
     //projectId of project with "default story" story
     private static final String PROJECT_ID = "2482520";
     private static final String STORY_NAME = "default story";
+    //Default project url
+    private static final String PROJECT_URL = "https://www.pivotaltracker.com/n/projects/2482520";
 
     /**
      * Instantiates a new Story hooks.
@@ -52,5 +57,12 @@ public class StoryHooks {
         defaultStory.setId(getId(STORY_NAME));
         defaultStory.setName(STORY_NAME);
         context.setStory(defaultStory);
+    }
+
+    @After(value = "@restoreDefaultStoryPosition")
+    public void restoreDefaultStoryPosition() {
+        WebDriverManager.getInstance().getWebDriver().get(PROJECT_URL);
+        ProjectPage projectPage= new ProjectPage();
+        projectPage.moveStoryFromIceboxToBacklogPanel();
     }
 }

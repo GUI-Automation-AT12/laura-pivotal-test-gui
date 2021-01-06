@@ -31,19 +31,19 @@ public class StorySteps {
 
     @And("^I move Default Story from Current Iteration\\/Backlog Panel to Icebox Panel$")
     public void moveAStoryFromCurrentIterationBacklogPanelToIceboxPanel() {
-        projectPage.moveDefaultStoryFromCurrentIterationBacklogPanelToIceboxPanel();
+        projectPage.moveStoryFromBacklogToIceboxPanel();
     }
 
     @Then("^Default Story should not be in the Current Iteration\\/Backlog Panel$")
     public void verifyStoryIsNotInTheCurrentIterationBacklogPanel() {
         String storyId = context.getStory().getId();
-        Assert.assertTrue(!projectPage.IsElementInCurrentIterationBacklogPanel(storyId));
+        Assert.assertTrue(!projectPage.isStoryInBacklogPanel(storyId));
     }
 
     @And("^the Default Story should be in the Icebox Panel$")
     public void verifyStoryIsInTheIceboxPanel() {
         String storyId = context.getStory().getId();
-        Assert.assertTrue(projectPage.IsElementInIceboxPanel(storyId));
+        Assert.assertTrue(projectPage.isStoryInIceboxPanel(storyId));
     }
 
     @When("I open the Default Story from Icebox Panel")
