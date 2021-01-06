@@ -1,6 +1,6 @@
 Feature: Create project
 
-  @deleteProject
+  @deleteProject @quitBrowser
   Scenario: Create a private project in HomePage
     Given I log in to Pivotal with Editable User credentials
     When I open the create project dialog in projects tab

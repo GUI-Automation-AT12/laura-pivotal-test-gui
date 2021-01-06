@@ -1,6 +1,6 @@
 Feature: Move story
 
-  @saveDefaultStory @restoreDefaultStoryPosition
+  @saveDefaultStory @restoreDefaultStoryPosition @quitBrowser
   Scenario: Move a story from Current Iteration/Backlog to Icebox panel in a project
     Given I log in to Pivotal with Editable User credentials
     When I navigate to DASHBOARD_PAGE
