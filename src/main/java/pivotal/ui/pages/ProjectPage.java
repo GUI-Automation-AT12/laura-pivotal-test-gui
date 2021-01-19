@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pivotal.ui.components.StoryComponent;
 
+import java.util.Locale;
+
 public class ProjectPage extends BasePage {
 
     @FindBy(css = ".backlog div[aria-label='default story']")
@@ -51,28 +53,26 @@ public class ProjectPage extends BasePage {
         defaultStoryItemInBacklog = null;
     }
 
-    /**
-     * Is Story in current iteration backlog panel boolean.
-     *
-     * @param storyId the story id
-     * @return true if story is in current iteration backlog panel, false otherwise
-     */
-    public boolean isStoryInBacklogPanel(final String storyId) {
-        //Locator of default story in current Iteration/Backlog Panel
-        By by = By.cssSelector(".backlog div[data-id='" + storyId + "']");
-        return WebElementInteractor.isElement(by);
+    private String setLocatorClass (final String namePanel) {
+        return switch (namePanel) {
+            case "Current Iteration/Backlog" -> "backlog";
+            case "Icebox" -> "icebox";
+            default -> "";
+        };
     }
 
     /**
-     * Is Story in icebox panel boolean.
+     * Is Story in panel boolean.
      *
      * @param storyId the story id
-     * @return if story is in icebox panel, false otherwise
+     * @param namePanel the name Panel
+     * @return true if story is in current iteration backlog panel, false otherwise
      */
-    public boolean isStoryInIceboxPanel(final String storyId) {
-        //Locator of default story in Icebox Panel
-        By by = By.cssSelector(".icebox div[data-id='" + storyId + "']");
-        return WebElementInteractor.isElement(by);
+    public boolean isStoryInPanel(final String storyId, final String namePanel) {
+        String namePanelLocator = setLocatorClass (namePanel);
+        String locator = String.format(".%s",namePanelLocator)
+                        + String.format(" div[data-id='%s']", storyId);
+        return WebElementInteractor.isElement(By.cssSelector(locator));
     }
 
     /**

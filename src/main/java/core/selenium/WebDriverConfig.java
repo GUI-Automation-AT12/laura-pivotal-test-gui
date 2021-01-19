@@ -39,7 +39,8 @@ public final class WebDriverConfig {
      * @return the browser
      */
     public String getBrowser() {
-        return browser;
+        //return browser;
+        return Environment.getInstance().getProperties().get(BROWSER);
     }
 
     /**
@@ -48,7 +49,8 @@ public final class WebDriverConfig {
      * @return the implicit wait time
      */
     public int getImplicitWaitTime() {
-        return implicitWaitTime;
+        //return implicitWaitTime;
+        return Integer.parseInt(Environment.getInstance().getProperties().get(IMPLICIT_WAIT_TIME));
     }
 
     /**
@@ -57,7 +59,8 @@ public final class WebDriverConfig {
      * @return the timeout
      */
     public int getTimeout() {
-        return timeout;
+        //return timeout;
+        return Integer.parseInt(Environment.getInstance().getProperties().get(TIMEOUT));
     }
 
     /**
@@ -66,6 +69,7 @@ public final class WebDriverConfig {
      * @return the wait sleep time
      */
     public int getWaitSleepTime() {
-        return waitSleepTime;
+        //return waitSleepTime;
+        return Integer.parseInt(Environment.getInstance().getProperties().get(WAIT_SLEEP_TIME));
     }
 }

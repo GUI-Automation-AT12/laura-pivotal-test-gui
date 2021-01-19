@@ -1,21 +1,22 @@
 package core.utils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pivotal.config.Environment;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+
 public class JsonDataReader {
 
     private static final String USERS_PATH = "usersPath";
     private HashMap mapData;
     private JSONObject jsonObject;
+    private JSONArray jsonArray;
 
     /**
      * Instantiates a new Json data reader.
@@ -23,29 +24,26 @@ public class JsonDataReader {
      * @param filePath the file path
      */
     public JsonDataReader(final String filePath) {
-        this.jsonObject = convert(jsonReader(filePath));
+        jsonReader(filePath);
     }
 
-    private Object jsonReader(final String filePath) {
-        Object object = new Object();
+    private JSONObject searchJsonObject(final String identifier) {
+        HashMap<String, Object> map = new HashMap<>();
+        return (JSONObject) jsonArray.get(0);
+    }
+    private void jsonReader(final String filePath) {
         try {
             File srcFile = new File(Environment.getInstance().getProperties().get(USERS_PATH) + filePath);
             JSONParser jsonParser = new JSONParser();
-            object = jsonParser.parse(new FileReader(srcFile));
+            Object object = jsonParser.parse(new FileReader(srcFile));
+            if (object instanceof JSONArray) {
+                this.jsonArray = (JSONArray)object;
+            } else {
+                this.jsonObject = (JSONObject) object;
+            }
         } catch (IOException | ParseException exception) {
             exception.getStackTrace();
         }
-        return object;
-    }
-
-    private JSONObject convert(final Object object) {
-        if (object instanceof JSONArray) {
-            JSONArray jsonArray = (JSONArray) object;
-            jsonObject = (JSONObject) jsonArray.get(0);
-        } else {
-            jsonObject = (JSONObject) object;
-        }
-        return jsonObject;
     }
 
     private void toMap(final String identifier) {
@@ -61,6 +59,10 @@ public class JsonDataReader {
      * @return the value data
      */
     public String getValueData(final String identifier, final String key) {
+        if (this.jsonObject == null) {
+            this.jsonObject = searchJsonObject(identifier);
+            jsonArray = null;
+        }
         toMap(identifier);
         String value = "";
         if (mapData.containsKey(key)) {

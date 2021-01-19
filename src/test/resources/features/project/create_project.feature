@@ -1,3 +1,4 @@
+@project
 Feature: Create project
 
   @deleteProject @quitBrowser

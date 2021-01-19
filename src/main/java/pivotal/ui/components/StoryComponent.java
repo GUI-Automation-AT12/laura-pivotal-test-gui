@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pivotal.ui.pages.BasePage;
 
+import static pivotal.constants.StoryIdentifiers.STORY_ID;
+import static pivotal.constants.StoryIdentifiers.STORY_NAME;
+
 public class StoryComponent extends BasePage {
 
     @FindBy(css = "textarea[aria-label='story title']")
@@ -21,20 +24,16 @@ public class StoryComponent extends BasePage {
     }
 
     /**
-     * Gets text from story title.
+     * Gets text from attribute.
      *
-     * @return the text from story title
+     * @param attribute the attribute
+     * @return the text from attribute
      */
-    public String getTextFromStoryTitle() {
-        return WebElementInteractor.getTxt(storyTitle);
-    }
-
-    /**
-     * Gets text numbers from attribute value of story id.
-     *
-     * @return the text numbers from attribute value of story id
-     */
-    public String getTextNumbersFromAttributeValueOfStoryId() {
-        return WebElementInteractor.getAttributeValue(storyId).substring(1);
+    public String getTextFromAttribute(final String attribute) {
+        return switch (attribute) {
+            case STORY_NAME -> WebElementInteractor.getTxt(storyTitle);
+            case STORY_ID -> WebElementInteractor.getAttributeValue(storyId).substring(1);
+            default -> "";
+        };
     }
 }

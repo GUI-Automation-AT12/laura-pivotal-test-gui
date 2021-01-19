@@ -41,50 +41,42 @@ public class StorySteps {
     }
 
     /**
-     * Verify story is not in the current iteration backlog panel.
+     * Verify story is not in the given panel.
      */
-    @Then("^Default Story should not be in the Current Iteration\\/Backlog Panel$")
-    public void verifyStoryIsNotInTheCurrentIterationBacklogPanel() {
+    @Then("^the story should not be in the (.*?) Panel$")
+    public void verifyStoryIsNotInPanel(final String panel) {
         String storyId = context.getStory().getId();
-        Assert.assertTrue(!projectPage.isStoryInBacklogPanel(storyId));
+        Assert.assertFalse(projectPage.isStoryInPanel(storyId, panel));
     }
 
     /**
-     * Verify story is in the icebox panel.
+     * Verify story is in the given panel.
      */
-    @And("^the Default Story should be in the Icebox Panel$")
-    public void verifyStoryIsInTheIceboxPanel() {
+    @And("^the story should be in the (.*?) Panel$")
+    public void verifyStoryIsInThePanel(final String panel) {
         String storyId = context.getStory().getId();
-        Assert.assertTrue(projectPage.isStoryInIceboxPanel(storyId));
+        Assert.assertTrue(projectPage.isStoryInPanel(storyId, panel));
     }
 
     /**
      * Open the default story from icebox panel.
      */
-    @When("I open the Default Story from Icebox Panel")
+    @When("I open the story from Icebox Panel")
     public void openTheDefaultStoryFromIceboxPanel() {
         projectPage.openDefaultStory();
     }
 
-    /**
-     * Verify story name is not changed.
-     */
-    @And("^the Default Story's name should not change$")
-    public void verifyStoryNameIsNotChanged() {
-        StoryComponent storyComponent = new StoryComponent();
-        String actualValue = storyComponent.getTextFromStoryTitle();
-        String storyId = context.getStory().getName();
-        Assert.assertEquals(actualValue, storyId);
-    }
 
     /**
-     * Verify story id is not changed.
+     * Verify story attribute is not changed.
+     *
+     * @param attribute the attribute
      */
-    @And("^the Default Story's id should not change$")
-    public void verifyStoryIdIsNotChanged() {
+    @And("^the story's (.*?) should not change$")
+    public void verifyStoryAttributeIsNotChanged(final String attribute) {
         StoryComponent storyComponent = new StoryComponent();
-        String actualValue = storyComponent.getTextNumbersFromAttributeValueOfStoryId();
-        String storyId = context.getStory().getId();
-        Assert.assertEquals(actualValue, storyId);
+        String actualValue = storyComponent.getTextFromAttribute(attribute);
+        String storyAttribute = context.getStory().getAttribute(attribute);
+        Assert.assertEquals(actualValue, storyAttribute);
     }
 }

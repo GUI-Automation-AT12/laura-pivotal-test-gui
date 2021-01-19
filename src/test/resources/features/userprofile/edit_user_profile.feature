@@ -1,4 +1,4 @@
-@UserProfile
+@user
 Feature: Edit User Profile
 
   @resetUserInformation @quitBrowser

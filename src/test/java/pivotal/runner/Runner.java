@@ -11,6 +11,7 @@ import pivotal.config.Environment;
         plugin = {"pretty"},
         features = {"src/test/resources/features"},
         glue = {"pivotal"}
+      //  tags = {"@user"}
 )
 public final class Runner extends AbstractTestNGCucumberTests {
 
